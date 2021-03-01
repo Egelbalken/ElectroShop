@@ -18,7 +18,7 @@ Bardia:
 Identity backend
 
 Kent:
-Logo, Webdesign Forntend
+Logo, Webdesign frontend
 
 
 V1:
