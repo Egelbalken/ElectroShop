@@ -4,7 +4,7 @@ black: 262626, boders,
 green: ACBFA4, background
 Begie: E2E8CE, background
 Amber: FF7F11, links and buttons
-Red: FF1B1C, buttons
+Red: FF1B1C, link and buttons
 
 Webshop - ElectroShop
 
