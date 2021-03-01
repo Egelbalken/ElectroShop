@@ -14,14 +14,14 @@ Assignmnets:
 Fredrik:
 Produkt backend 
 
-Bardia:
-Identity backend
+Bardia #ScrumMain:
+Identity backend 
 
 Kent:
 Logo, Webdesign frontend
 
 
-V1:
+V1: Dag ett, Fått upp projektet på GitHub och satt upp lives share via Visual studio (väldigt coolt). Preliminärt delat upp start av projektet. Dagliga morgonsmöten 09-10.
 
 V2:
 
