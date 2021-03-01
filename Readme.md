@@ -4,9 +4,21 @@ Webshop - ElectroShop
 
 Log:
 2021-03-01 - Initial project start.
-MVC
+- MVC Identity Schaffolding installed.
 
 
+
+
+Assignmnets:
+
+Fredrik:
+Produkt backend 
+
+Bardia:
+Identity backend
+
+Kent:
+Logo, Webdesign Forntend
 
 
 V1:
