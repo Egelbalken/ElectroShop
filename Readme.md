@@ -1,4 +1,10 @@
 Projekt: MVC Webshop.
+Color palette: https://coolors.co/262626-acbfa4-e2e8ce-ff7f11-ff1b1c
+black: 262626
+green: ACBFA4
+Begie: E2E8CE
+Amber: FF7F11
+Red: FF1B1C
 
 Webshop - ElectroShop
 
