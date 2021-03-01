@@ -1,10 +1,10 @@
-Projekt: Webshop.
+Projekt: MVC Webshop.
 
 Webshop - ElectroShop
 
 Log:
-
-
+2021-03-01 - Initial project start.
+MVC
 
 
 
