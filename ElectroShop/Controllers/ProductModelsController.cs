@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ElectroShop.Data;
 using ElectroShop.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ElectroShop.Controllers
 {
+
     public class ProductModelsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -53,6 +55,7 @@ namespace ElectroShop.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProductId,Name,Description,Price")] ProductModel productModel)
         {
@@ -85,6 +88,7 @@ namespace ElectroShop.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,Price")] ProductModel productModel)
         {
@@ -117,6 +121,7 @@ namespace ElectroShop.Controllers
         }
 
         // GET: ProductModels/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
