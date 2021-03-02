@@ -3,6 +3,10 @@ body {
     background: rgb(172,191,164);
 }
 
+.clear {
+    clear: both;
+}
+
 .mainbox {
     background: rgb(172,191,164);
     margin: auto;
@@ -26,6 +30,13 @@ body {
     left: 42%;
     top: 15%;
     color: #ffffff;
+}
+
+.fourofour {
+    align-content: center;
+    text-align: center !important;
+    margin: auto !important;
+    width: 500px !important;
 }
 
 .err2 {
@@ -55,3 +66,4 @@ a {
     a:hover {
         text-decoration: underline;
     }
+

@@ -15,7 +15,12 @@ a.navbar-brand {
     word-break: break-all;
 }
 
-#serch{
+#fourofour{
+    width: 150px;
+    text-align: center;
+}
+
+#serch {
     float: right
 }
 
