@@ -41,10 +41,10 @@
             {
                 <tr>
                     <td>
-                         @Html.DisplayNameFor(model => model.ImageURL)
+                         <img class="productimage" src="@item.ImageURL"/>
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.ProductId)
+                        @Html.DisplayFor(modelItem => item.ProductId)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
