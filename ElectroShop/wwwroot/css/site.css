@@ -15,9 +15,9 @@ a.navbar-brand {
     word-break: break-all;
 }
 
-/*#serch{
+#serch{
     float: right
-}*/
+}
 
 .clear {
     clear: both;
