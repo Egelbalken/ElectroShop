@@ -23,7 +23,12 @@ namespace ElectroShop.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Faq()
+        {
+            return View();
+        }
+
+        public IActionResult About()
         {
             return View();
         }
