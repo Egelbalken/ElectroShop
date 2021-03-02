@@ -90,7 +90,7 @@ namespace ElectroShop.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,Price")] ProductModel productModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,Price,ImageURL")] ProductModel productModel)
         {
             if (id != productModel.ProductId)
             {

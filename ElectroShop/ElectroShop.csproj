@@ -8,6 +8,12 @@
   <ItemGroup>
     <Compile Remove="Migrations\20210302090354_Add product scheme.cs" />
     <Compile Remove="Migrations\20210302090354_Add product scheme.Designer.cs" />
+    <Compile Remove="Migrations\20210302132336_i.cs" />
+    <Compile Remove="Migrations\20210302132336_i.Designer.cs" />
+    <Compile Remove="Migrations\20210302135239_Product properties.cs" />
+    <Compile Remove="Migrations\20210302135239_Product properties.Designer.cs" />
+    <Compile Remove="Migrations\20210302135341_ProductPROPS.cs" />
+    <Compile Remove="Migrations\20210302135341_ProductPROPS.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
