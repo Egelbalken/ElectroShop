@@ -1,10 +1,10 @@
 ﻿
 body {
-    background-color: #95c2de;
+    background: rgb(172,191,164);
 }
 
 .mainbox {
-    background-color: #95c2de;
+    background: rgb(172,191,164);
     margin: auto;
     height: 600px;
     width: 600px;
