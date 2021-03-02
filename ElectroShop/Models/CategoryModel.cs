@@ -8,6 +8,7 @@ namespace ElectroShop.Models
 {
     public class CategoryModel
     {
+        [Key]
         public int CategoryId { get; set; }
 
         [MaxLength(125)]

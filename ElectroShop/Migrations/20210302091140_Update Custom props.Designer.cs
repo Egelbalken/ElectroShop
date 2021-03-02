@@ -4,14 +4,16 @@ using ElectroShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ElectroShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210302091140_Update Custom props")]
+    partial class UpdateCustomprops
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,9 +61,6 @@ namespace ElectroShop.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -97,77 +96,7 @@ namespace ElectroShop.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("OrderId");
-
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("ElectroShop.Models.CategoryModel", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(125)")
-                        .HasMaxLength(125);
-
-                    b.Property<int?>("ParentCategoryCategoryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoryId");
-
-                    b.HasIndex("ParentCategoryCategoryId");
-
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("ElectroShop.Models.OrderModel", b =>
-                {
-                    b.Property<int>("OrderId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("OrderId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("ElectroShop.Models.ProductModel", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(125)")
-                        .HasMaxLength(125);
-
-                    b.Property<int?>("OrderModelOrderId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("Money");
-
-                    b.HasKey("ProductId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("OrderModelOrderId");
-
-                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -351,31 +280,6 @@ namespace ElectroShop.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("UserTokens");
-                });
-
-            modelBuilder.Entity("ElectroShop.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("ElectroShop.Models.OrderModel", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId");
-                });
-
-            modelBuilder.Entity("ElectroShop.Models.CategoryModel", b =>
-                {
-                    b.HasOne("ElectroShop.Models.CategoryModel", "ParentCategory")
-                        .WithMany("SubCategories")
-                        .HasForeignKey("ParentCategoryCategoryId");
-                });
-
-            modelBuilder.Entity("ElectroShop.Models.ProductModel", b =>
-                {
-                    b.HasOne("ElectroShop.Models.CategoryModel", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId");
-
-                    b.HasOne("ElectroShop.Models.OrderModel", null)
-                        .WithMany("Products")
-                        .HasForeignKey("OrderModelOrderId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
