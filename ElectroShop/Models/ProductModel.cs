@@ -17,6 +17,7 @@ namespace ElectroShop.Models
         public string Description { get; set; }
         [Column(TypeName = "Money")]
         public decimal Price { get; set; }
+        public string ImageURL { get; set; }
 
         public CategoryModel Category { get; set; }
     }
