@@ -10,8 +10,7 @@
 
 <h1>Products</h1>
 <div class="jumbotron">
-
-    @if (SignInManager.IsSignedIn(User))
+    @if (User.IsInRole("Admin"))
     {
     <p>
         <a asp-action="Create">Create New</a>
@@ -41,6 +40,7 @@
         <tbody>
             @foreach (var item in Model)
             {
+
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.ImageURL)
@@ -57,7 +57,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
-                @if (SignInManager.IsSignedIn(User))
+                @if (User.IsInRole("Admin"))
                     {
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
