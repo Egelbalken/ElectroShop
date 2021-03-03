@@ -5,7 +5,7 @@ For more information on enabling MVC for empty projects, visit https://go.micros
 }
 
 <!-- Vi behöver lägga till dynamiska parametrar för prdukterna sen via ModelBinding-->
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleIndicators" class="jumbotron carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -13,19 +13,26 @@ For more information on enabling MVC for empty projects, visit https://go.micros
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <h3 class="text-center">Clock Module</h3>
-            <h2 class="text-center" style="color:#FF1B1C">REA 50:-</h2>
-            <img class="d-block w-100" src="/images/1.png" alt="First slide">
+            <a style="text-decoration: none; href="#">
+                <h3 class="text-center">Clock Module</h3>
+                <h2 class="text-center" style="color:#FF1B1C">REA 50:-</h2>
+                <img class="d-block w-100" src="/images/1.png" alt="First slide">
+            </a>
+        </div>
+
+        <div class="carousel-item">
+            <a style="text-decoration: none;" href="#">
+                <h3 class="text-center">Raspberry Pi 2B</h3>
+                <h2 class="text-center" style="color:#FF1B1C">REA 350:-</h2>
+                <img class="d-block w-100" src="/images/2.png">
+            </a>
         </div>
         <div class="carousel-item">
-         <h3 class="text-center">Raspberry Pi 2B</h3>
-         <h2 class="text-center" style="color:#FF1B1C">REA 350:-</h2>
-            <img class="d-block w-100" src="/images/2.png">
-        </div>
-        <div class="carousel-item">
-            <h3 class="text-center">Raspberry Pi 2B/3B/4B Cam V1.2</h3>
-            <h2 class="text-center" style="color:#FF1B1C">REA 150:-</h2>
-            <img class="d-block w-100" src="/images/3.png" alt="Third slide">
+            <a style="text-decoration: none; href="#">
+                <h3 class="text-center">Raspberry Pi 2B/3B/4B Cam V1.2</h3>
+                <h2 class="text-center" style="color:#FF1B1C">REA 150:-</h2>
+                <img class="d-block w-100" src="/images/3.png" alt="Third slide">
+            </a>
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
