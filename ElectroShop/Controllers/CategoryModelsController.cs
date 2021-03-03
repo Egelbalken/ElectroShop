@@ -49,7 +49,11 @@ namespace ElectroShop.Controllers
         // GET: CategoryModels/Create
         public IActionResult Create()
         {
-            ViewData["ParentCategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
+            ViewData["ParentCategoryName"] = new SelectList(
+                _context.Categories, 
+                nameof(CategoryModel.CategoryId),
+                nameof(CategoryModel.Name)
+            );
             return View();
         }
 

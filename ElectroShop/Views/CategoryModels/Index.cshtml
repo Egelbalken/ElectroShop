@@ -39,7 +39,10 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ParentCategory.Name)
+                @if (item.ParentCategory != null)
+                {
+                    @Html.DisplayFor(modelItem => item.ParentCategory.Name)
+                }
             </td>
                 @if (User.IsInRole("Admin"))
                 {
