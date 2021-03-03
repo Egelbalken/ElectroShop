@@ -18,8 +18,9 @@ namespace ElectroShop.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
+
             return View();
         }
 
@@ -37,7 +38,7 @@ namespace ElectroShop.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return RedirectToAction("PageNotFound", "Error");
+            return RedirectToAction("PageNotFound", "ErrorController");
             //return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
