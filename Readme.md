@@ -27,7 +27,8 @@ Kent:
 Logo, Webdesign frontend
 
 
-V1: Dag ett, Fått upp projektet på GitHub och satt upp lives share via Visual studio (väldigt coolt). Preliminärt delat upp start av projektet. Dagliga morgonsmöten 09-10.
+V1: Dag Ett, Fått upp projektet på GitHub och satt upp lives share via Visual studio (väldigt coolt). Preliminärt delat upp start av projektet. Dagliga morgonsmöten 09-10.
+V1: Dag Tre, delar kvar att göra, Shopping cart(Add to cart/Köp(Välja produkt)), Cookies(Temporary Session? kopplas till shopping cart, kanske), Checkout(Slutföra ordern, Genomför köp. Kvitto?).
 
 V2:
 
