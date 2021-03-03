@@ -6,6 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210303110022_update_db_scheme.cs" />
+    <Compile Remove="Migrations\20210303110022_update_db_scheme.Designer.cs" />
+    <Compile Remove="Migrations\20210303110350_Update_db_scheme.cs" />
+    <Compile Remove="Migrations\20210303110350_Update_db_scheme.Designer.cs" />
+    <Compile Remove="Migrations\20210303113828_category_relationship_update.cs" />
+    <Compile Remove="Migrations\20210303113828_category_relationship_update.Designer.cs" />
+    <Compile Remove="Migrations\20210303120339_Update_db_scheme.cs" />
+    <Compile Remove="Migrations\20210303120339_Update_db_scheme.Designer.cs" />
+    <Compile Remove="Migrations\20210303121109_update_db_scheme.cs" />
+    <Compile Remove="Migrations\20210303121109_update_db_scheme.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.12" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.12" />

@@ -52,6 +52,12 @@ namespace ElectroShop.Data
             {
                 entity.ToTable("UserTokens");
             });
+
+            builder.Entity<CategoryModel>()
+                .HasMany(parent => parent.SubCategories)
+                .WithOne(child => child.ParentCategory)
+                .HasForeignKey(child => child.ParentCategoryId);
+
         }
     }
 }
