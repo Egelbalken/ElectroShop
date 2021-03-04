@@ -1,5 +1,6 @@
 ﻿using ElectroShop.Data;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,7 @@ namespace ElectroShop.Models
             _applicationDbContext.SaveChanges();
         }
 
+        // Remove a cart item.
         public int RemoveFromCart(ProductModel product)
         {
             var shoppingCartItem =
@@ -90,11 +92,29 @@ namespace ElectroShop.Models
             return localAmount;
         }
 
-        //public List<ShoppingCartItem> GetShoppingCartItems()
-        //{
-        //    return ShoppingCartItems ??
-        //        (ShoppingCartItems = 
-        //        _applicationDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId).Include(s => s.pr)
-        //}
+        // List all items in cart
+        public List<ShoppingCartItem> GetShoppingCartItems()
+        {
+            return ShoppingCartItems ??
+                (ShoppingCartItems =
+                _applicationDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId).Include(s => s.product).ToList());
+        }
+
+        // Clear the cart
+        public void ClearCart()
+        {
+            var cartItems = _applicationDbContext.ShoppingCartItems.Where(cart => cart.ShoppingCartId == ShoppingCartId);
+
+            _applicationDbContext.ShoppingCartItems.RemoveRange(cartItems);
+
+            _applicationDbContext.SaveChanges();
+        }
+
+        // Return the total shopping cart sum and items.
+        public decimal GetShoppingCartTotal()
+        {
+            var total = _applicationDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId).Select(c => c.product.Price * c.Amount).Sum();
+            return total;
+        }
     }
 }
