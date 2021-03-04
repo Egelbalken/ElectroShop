@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ElectroShop.Migrations
 {
-    public partial class Updatedatabase : Migration
+    public partial class IntitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,6 +49,7 @@ namespace ElectroShop.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 125, nullable: true),
                     Description = table.Column<string>(nullable: true),
+                    ImageURL = table.Column<string>(nullable: true),
                     ParentCategoryId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
