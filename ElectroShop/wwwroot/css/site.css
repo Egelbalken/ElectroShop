@@ -100,6 +100,12 @@ body {
     width: 120px;
 }
 
+.cartImage {
+    float: right;
+    width: 70px !important;
+    margin-bottom: 40px;
+}
+
 #covid {
     background-color: #FF7F11;
     box-shadow: 2px 2px 5px black;

@@ -10,11 +10,11 @@
 <body>
     <header>
         <din class="clear"></din>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-custom bg-white border-bottom box-shadow mb-3>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-custom bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img id="logo" src="/images/electroshop7.png" alt="Noimage"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
+                        aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
@@ -35,11 +35,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
-                        <form id="serch" class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-lg-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-                        </form>
                     </ul>
+                    <form id="serch" class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-lg-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                    </form>
                 </div>
                 <br />
             </div>
@@ -51,9 +51,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted>
-    <div class="container">
-        &copy; 2021 - ElectroShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> - @DateTime.Now
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - ElectroShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> - @DateTime.Now
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
