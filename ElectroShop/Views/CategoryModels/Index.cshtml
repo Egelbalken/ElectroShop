@@ -20,6 +20,9 @@
         <thead>
             <tr>
                 <th>
+                    Image
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
@@ -28,13 +31,16 @@
                 <th>
                     @Html.DisplayNameFor(model => model.ParentCategory)
                 </th>
-                <th></th>
+                <th> </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
             <tr>
+                <td>
+                    <img class="productimage" src="@item.ImageURL"/>
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
@@ -43,17 +49,17 @@
                 </td>
                 <td>
                     @if (item.ParentCategory != null)
-                        {
-                    @Html.DisplayFor(modelItem => item.ParentCategory.Name)
-                            }
+                    {
+                        @Html.DisplayFor(modelItem => item.ParentCategory.Name)
+                    }
                 </td>
                 @if (User.IsInRole("Admin"))
-                    {
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
-                </td>
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
+                    </td>
                 }
             </tr>
             }

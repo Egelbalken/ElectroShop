@@ -14,6 +14,7 @@ namespace ElectroShop.Models
         [MaxLength(125)]
         public string Name { get; set; }
         public string Description { get; set; }
+        public string ImageURL { get; set; }
 
         public int? ParentCategoryId { get; set; }
         public CategoryModel ParentCategory { get; set; }
