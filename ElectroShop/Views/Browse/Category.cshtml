@@ -14,10 +14,12 @@
 <div class="row">
     @foreach (var category in Model.Category.SubCategories)
     {
-        <div class="col-md-3 m-1 bg-light">
-            <a asp-action="Category" asp-route-id="@category.CategoryId">@category.Name</a>
-            <p>@category.Description</p>
-        </div>
+        <a asp-action="Category" asp-route-id="@category.CategoryId">
+            <div class="col-md-4 m-1">
+                <img class="productimage" src="@category.ImageURL" />
+                <span>@category.Name</span>
+            </div>
+        </a>
     }
 </div>
 
@@ -33,7 +35,7 @@
         @foreach (var product in Model.Products)
         {
             <tr>
-                <td><img src="@product.ImageURL" /></td>
+                <td><img class="productimage" src="@product.ImageURL" /></td>
                 <td>
                     <a asp-controller="ProductModels" 
                        asp-action="Details" 
