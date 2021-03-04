@@ -11,7 +11,8 @@ Webshop - ElectroShop
 Log:
 2021-03-01 - Initial project start.
 - MVC Identity Schaffolding installed.
-
+2021-03-03 - Repository and database update.
+- Category section created.
 
 
 
