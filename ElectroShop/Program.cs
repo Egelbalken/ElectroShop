@@ -29,6 +29,7 @@ namespace ElectroShop
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                     await ContextSeed.SeedRolesAsync(userManager, roleManager);
                     await ContextSeed.SeedAdminAsync(userManager, roleManager);
+                    await ContextSeed.SeedCategoriesAndProductsAsync(context);
                 }
                 catch (Exception ex)
                 {
