@@ -1,0 +1,48 @@
+﻿@model BrowseCategoryViewModel
+
+@if (Model.Category.ParentCategory != null)
+{
+    <a asp-action="Category" asp-route-id="@Model.Category.ParentCategory.CategoryId">Return to @Model.Category.ParentCategory.Name</a>
+}
+
+<div>
+    <h4>@Model.Category.Name</h4>
+    <p>@Model.Category.Description</p>
+    <p></p>
+</div>
+
+<div class="row">
+    @foreach (var category in Model.Category.SubCategories)
+    {
+        <div class="col-md-3 m-1 bg-light">
+            <a asp-action="Category" asp-route-id="@category.CategoryId">@category.Name</a>
+            <p>@category.Description</p>
+        </div>
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td><img src="@product.ImageURL" /></td>
+                <td>
+                    <a asp-controller="ProductModels" 
+                       asp-action="Details" 
+                       asp-route-id="@product.ProductId">
+                    @product.Name
+                    </a>
+                </td>
+                <td>@product.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>

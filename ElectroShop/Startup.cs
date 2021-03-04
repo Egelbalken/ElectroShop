@@ -32,6 +32,8 @@ namespace ElectroShop
             services.AddHttpContextAccessor();
             services.AddSession();
 
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>()
