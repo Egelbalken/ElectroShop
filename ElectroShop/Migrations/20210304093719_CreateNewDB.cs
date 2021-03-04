@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ElectroShop.Migrations
 {
-    public partial class addedshoppingCart : Migration
+    public partial class CreateNewDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
