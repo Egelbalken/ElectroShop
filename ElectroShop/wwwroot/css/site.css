@@ -96,15 +96,32 @@ body {
     text-align:center;
 }
 
-#logo {
+.logo {
     width: 120px;
 }
 
+    .logo:active,
+    .logo:hover {
+        /*float: right;
+        transition: 0.5s;
+        color: #FF7F11;
+        width: 130px;*/
+    }
+
 .cartImage {
     float: right;
-    width: 70px !important;
-    margin-bottom: 40px;
+    width: 70px;
 }
+
+    .cartImage:active,
+    .cartImage:hover {
+        float: right;
+        transition: 0.5s;
+        color: #FF7F11;
+        width: 80px;
+    }
+
+
 
 #covid {
     background-color: #FF7F11;
