@@ -33,6 +33,8 @@ V1: Dag Ett, Fått upp projektet på GitHub och satt upp lives share via Visual 
 
 V1: Dag Tre, delar kvar att göra, Shopping cart(Add to cart/Köp(Välja produkt)), Cookies(Temporary Session? kopplas till shopping cart, kanske), Checkout(Slutföra ordern, Genomför köp. Kvitto?).
 
+V1: Dag Fyra, Shopping Cart och Session har tillförts till projektet, Checkout och knapp för köp är nästa del.
+
 V2:
 
 V3:
