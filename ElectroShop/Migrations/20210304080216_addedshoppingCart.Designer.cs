@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElectroShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210303130339_migrateIrepos")]
-    partial class migrateIrepos
+    [Migration("20210304080216_addedshoppingCart")]
+    partial class addedshoppingCart
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -193,6 +193,29 @@ namespace ElectroShop.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("ElectroShop.Models.ShoppingCartItem", b =>
+                {
+                    b.Property<int>("ShoppingCartItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShoppingCartId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ShoppingCartItemId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ShoppingCartItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -412,6 +435,13 @@ namespace ElectroShop.Migrations
                     b.HasOne("ElectroShop.Models.CategoryModel", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId");
+                });
+
+            modelBuilder.Entity("ElectroShop.Models.ShoppingCartItem", b =>
+                {
+                    b.HasOne("ElectroShop.Models.ProductModel", "product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
