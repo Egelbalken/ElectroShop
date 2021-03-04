@@ -24,5 +24,25 @@ namespace ElectroShop.Models
                 .Include(category => category.Products)
                 .FirstOrDefault(category => category.CategoryId == id);
         }
+
+        public IEnumerable<ProductModel> GetAllProducts(int categoryId)
+        {
+            var products = new List<ProductModel>();
+            var category = applicationDbContext.Categories
+                .Include(category => category.Products)
+                .Include(category => category.SubCategories)
+                .SingleOrDefault(category => category.CategoryId == categoryId);
+
+            if (category != default)
+            {
+                products.AddRange(category.Products);
+                foreach (var subCategory in category.SubCategories)
+                {
+                    products.AddRange(GetAllProducts(subCategory.CategoryId));
+                }
+            }
+
+            return products;
+        }
     }
 }
