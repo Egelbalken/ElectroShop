@@ -63,7 +63,7 @@ namespace ElectroShop.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,Name,Description,ParentCategoryId")] CategoryModel categoryModel)
+        public async Task<IActionResult> Create([Bind("CategoryId,Name,Description,ParentCategoryId,ImageURL")] CategoryModel categoryModel)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace ElectroShop.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name,Description,ParentCategoryId")] CategoryModel categoryModel)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name,Description,ParentCategoryId,ImageURL")] CategoryModel categoryModel)
         {
             if (id != categoryModel.CategoryId)
             {
