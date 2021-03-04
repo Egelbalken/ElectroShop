@@ -13,7 +13,8 @@ Log:
 - MVC Identity Schaffolding installed.
 2021-03-03 - Repository and database update.
 - Category section created.
-
+2021-03-04 - Shoping cart added.
+- Starting to add a chopping cart to menu and adding shoppingcart classes.
 
 
 Assignmnets:
