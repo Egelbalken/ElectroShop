@@ -88,6 +88,13 @@ namespace ElectroShop.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["Categories"] = new SelectList(
+               _context.Categories.OrderBy(category => category.Name),
+               nameof(CategoryModel.CategoryId),
+               nameof(CategoryModel.Name)
+            );
+
             return View(productModel);
         }
 
@@ -97,7 +104,7 @@ namespace ElectroShop.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,Price,ImageURL")] ProductModel productModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,Price,CategoryId,ImageURL")] ProductModel productModel)
         {
             if (id != productModel.ProductId)
             {
