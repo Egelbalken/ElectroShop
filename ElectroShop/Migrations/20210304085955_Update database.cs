@@ -3,11 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ElectroShop.Migrations
 {
-<<<<<<< HEAD:ElectroShop/Migrations/20210304085955_Update database.cs
     public partial class Updatedatabase : Migration
-=======
-    public partial class IntitialMigration : Migration
->>>>>>> b52e5b5410e35493c18eb7187c559644d921ca51:ElectroShop/Migrations/20210304094717_IntitialMigration.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

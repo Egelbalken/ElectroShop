@@ -10,13 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElectroShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-<<<<<<< HEAD:ElectroShop/Migrations/20210304085955_Update database.Designer.cs
     [Migration("20210304085955_Update database")]
     partial class Updatedatabase
-=======
-    [Migration("20210304094717_IntitialMigration")]
-    partial class IntitialMigration
->>>>>>> b52e5b5410e35493c18eb7187c559644d921ca51:ElectroShop/Migrations/20210304094717_IntitialMigration.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
