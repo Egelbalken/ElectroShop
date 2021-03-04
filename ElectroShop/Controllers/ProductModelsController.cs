@@ -47,7 +47,13 @@ namespace ElectroShop.Controllers
 
         // GET: ProductModels/Create
         public IActionResult Create()
-        {
+        { 
+            ViewData["Categories"] = new SelectList(
+               _context.Categories.OrderBy(category => category.Name),
+               nameof(CategoryModel.CategoryId),
+               nameof(CategoryModel.Name)
+            );
+
             return View();
         }
 
@@ -57,7 +63,7 @@ namespace ElectroShop.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,Name,Description,Price")] ProductModel productModel)
+        public async Task<IActionResult> Create([Bind("ProductId,Name,Description,Price,CategoryId,ImageURL")] ProductModel productModel)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +71,7 @@ namespace ElectroShop.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(productModel);
         }
 

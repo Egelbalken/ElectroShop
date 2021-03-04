@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ElectroShop.Migrations
 {
-    public partial class addedshoppingCart : Migration
+    public partial class Updatedatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -203,7 +203,7 @@ namespace ElectroShop.Migrations
                     Description = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(type: "Money", nullable: false),
                     ImageURL = table.Column<string>(nullable: true),
-                    CategoryId = table.Column<int>(nullable: true)
+                    CategoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -214,7 +214,7 @@ namespace ElectroShop.Migrations
                         principalSchema: "Identity",
                         principalTable: "Categories",
                         principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
