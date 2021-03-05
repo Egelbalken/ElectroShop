@@ -12,9 +12,9 @@
     
     @foreach(var item in Model)
     {
-    <a class="shadow btn btn-primary mx-1" asp-action="Category" asp-controller="Browse" asp-route-id="@item.CategoryId" >@item.Name</a>
+    <a class="shadow btn btn-light mx-1" asp-action="Category" asp-controller="Browse" asp-route-id="@item.CategoryId" >@item.Name</a>
     }
-
+    <p>
     @if (User.IsInRole("Admin"))
     {
         <p>
