@@ -9,13 +9,17 @@
 
 <h1>Category index</h1>
 <div class="jumbotron">
+    
+    @foreach(var item in Model)
+    {
+    <a class="shadow btn btn-primary mx-1" asp-action="Category" asp-controller="Browse" asp-route-id="@item.CategoryId" >@item.Name</a>
+    }
 
     @if (User.IsInRole("Admin"))
     {
         <p>
             <a class="shadow btn btn-primary mx-1" asp-action="Create">Create New</a>
         </p>
-    }
     <table class="table">
         <thead>
             <tr>
@@ -65,4 +69,5 @@
             }
         </tbody>
     </table>
+    }
 </div>

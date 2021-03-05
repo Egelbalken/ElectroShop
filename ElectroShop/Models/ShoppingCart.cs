@@ -81,7 +81,6 @@ namespace ElectroShop.Models
                 {
                     _applicationDbContext.ShoppingCartItems.Remove(shoppingCartItem);
                 }
-                _applicationDbContext.ShoppingCartItems.Add(shoppingCartItem);
             }
             else
             {
