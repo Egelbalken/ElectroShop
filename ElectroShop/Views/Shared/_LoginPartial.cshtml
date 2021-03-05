@@ -3,7 +3,7 @@
 @inject UserManager<ApplicationUser> UserManager
 
 <ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
+    @if (User.Identity.IsAuthenticated)
     {
         <li class="nav-item" style="align-self: center;">
             @if (UserManager.GetUserAsync(User).Result.ProfilePicture != null)

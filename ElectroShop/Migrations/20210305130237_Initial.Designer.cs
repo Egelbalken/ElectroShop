@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElectroShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210305094857_hejhop")]
-    partial class hejhop
+    [Migration("20210305130237_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
