@@ -41,7 +41,7 @@ namespace ElectroShop.Models
         {
             var shoppingCartItem =
                 _applicationDbContext.ShoppingCartItems.SingleOrDefault(
-                    s => s.product.ProductId == s.product.ProductId && s.ShoppingCartId == ShoppingCartId);
+                    s => s.product.ProductId == product.ProductId && s.ShoppingCartId == ShoppingCartId);
 
             if (shoppingCartItem == null)
             {
