@@ -24,6 +24,9 @@
                 <td class="text-right">
                     @((line.Amount * line.product.Price).ToString("c"))
                 </td>
+                <td>
+                    <a class="shadow btn btn-warning" asp-action="RemoveFromShoppingCart" asp-route-productId="@line.product.ProductId">Remove</a>
+                </td>
             </tr>
         }
     </tbody>

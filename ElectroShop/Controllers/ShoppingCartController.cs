@@ -48,9 +48,9 @@ namespace ElectroShop.Controllers
             return RedirectToAction("Index");
         }
 
-        public RedirectToActionResult RemoveFromShoppingCart(int productionId)
+        public RedirectToActionResult RemoveFromShoppingCart(int productId)
         {
-            var selectedProduct = _productRepository.AllProducts.FirstOrDefault(p => productionId == p.ProductId);
+            var selectedProduct = _productRepository.AllProducts.FirstOrDefault(p => productId == p.ProductId);
 
             if (selectedProduct != null)
             {
