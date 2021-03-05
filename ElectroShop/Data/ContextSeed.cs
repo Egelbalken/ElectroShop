@@ -38,6 +38,30 @@ namespace ElectroShop.Data
             }
         }
 
+        public static async Task SeedCustomerAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            var defaultUser = new ApplicationUser
+            {
+                UserName = "CustomerBardia",
+                Email = "CustomerBardia@gmail.com",
+                FirstName = "Customer",
+                LastName = "IsKing",
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true
+            };
+            if (userManager.Users.All(u => u.Id != defaultUser.Id))
+            {
+                var user = await userManager.FindByEmailAsync(defaultUser.Email);
+                if (user == null)
+                {
+                    await userManager.CreateAsync(defaultUser, "Customer123#");
+                    await userManager.AddToRoleAsync(defaultUser, Enums.Roles.Customer.ToString());
+                }
+
+            }
+        }
+
+
         public static async Task SeedCategoriesAndProductsAsync(ApplicationDbContext context)
         {
             var parentCategories = new List<CategoryModel>
