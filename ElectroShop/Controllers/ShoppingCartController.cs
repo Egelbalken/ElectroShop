@@ -37,9 +37,9 @@ namespace ElectroShop.Controllers
             return View(shoppingCartViewModel);
         }
 
-        public RedirectToActionResult AddToShoppingCart(int productionId)
+        public RedirectToActionResult AddToShoppingCart(int productId)
         {
-            var selectedProduct = _productRepository.AllProducts.FirstOrDefault(p => productionId == p.ProductId);
+            var selectedProduct = _productRepository.AllProducts.FirstOrDefault(p => productId == p.ProductId);
 
             if (selectedProduct != null)
             {
