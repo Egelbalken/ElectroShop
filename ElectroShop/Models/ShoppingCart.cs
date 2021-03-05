@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ElectroShop.Models
 {
-    public class ShopingCart
+    public class ShoppingCart
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
@@ -18,13 +18,13 @@ namespace ElectroShop.Models
         public List<ShoppingCartItem> ShoppingCartItems { get; set; }
 
         // constructor injection dbContext
-        private ShopingCart(ApplicationDbContext applicationDbContext)
+        private ShoppingCart(ApplicationDbContext applicationDbContext)
         {
             _applicationDbContext = applicationDbContext;
         }
 
         // adding shopping cart session
-        public static ShopingCart GetCart(IServiceProvider services)
+        public static ShoppingCart GetCart(IServiceProvider services)
         {
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
@@ -34,7 +34,7 @@ namespace ElectroShop.Models
 
             session.SetString("CartId", cartId);
 
-            return new ShopingCart(context) { ShoppingCartId = cartId };
+            return new ShoppingCart(context) { ShoppingCartId = cartId };
         }
 
         public void AddToCart(ProductModel product, int amount)

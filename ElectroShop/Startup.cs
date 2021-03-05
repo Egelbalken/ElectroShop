@@ -28,11 +28,14 @@ namespace ElectroShop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Added for cart sessions
-            services.AddHttpContextAccessor();
-            services.AddSession();
-
+            // Added scoped
+            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+            // Added Accessor
+            services.AddHttpContextAccessor();
+            // Added for cart sessions
+            services.AddSession();
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -59,7 +62,7 @@ namespace ElectroShop
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            // Added to cart function
+            // Added to cart function, OBS before routing.
             app.UseSession();
 
             app.UseRouting();
