@@ -12,7 +12,7 @@
     @if (User.IsInRole("Admin"))
     {
         <p>
-            <a asp-action="Create">Create New</a>
+            <a class="shadow btn btn-primary mx-1" asp-action="Create">Create New</a>
         </p>
     }
     <table class="table">
@@ -20,9 +20,6 @@
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.ImageURL)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProductId)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
@@ -44,9 +41,6 @@
                          <img class="productimage" src="@item.ImageURL"/>
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ProductId)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
@@ -58,9 +52,16 @@
                     @if (User.IsInRole("Admin"))
                     {
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                            <a class="shadow btn btn-primary mx-1" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> 
+                            <a class="shadow btn btn-warning mx-1" asp-action="Details" asp-route-id="@item.ProductId">Details</a> 
+                            <a class="shadow btn btn-danger mx-1" asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                        </td>
+                    }
+                     else
+                    {
+                        <td>
+                            <a class="shadow btn btn-secondary mx-1" asp-action="#" asp-route-id="">Add to cart</a>
+                            <a class="shadow btn btn-warning mx-1" asp-action="Details" asp-route-id="@item.ProductId">Details</a> 
                         </td>
                     }
                 </tr>

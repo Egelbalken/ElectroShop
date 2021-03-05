@@ -20,6 +20,9 @@ a.navbar-brand {
     text-align: center;
 }
 
+.shadow {
+    box-shadow: 2px 2px 5px black !important;
+}
 
 .clear {
     clear: both;
@@ -108,8 +111,7 @@ body {
     .cartImage:active,
     .cartImage:hover {
         float: right;
-        transition: 0.5s;
-        color: #FF7F11;
+        transition: 0.2s;
         width: 80px;
     }
 

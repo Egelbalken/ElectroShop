@@ -13,13 +13,19 @@ namespace ElectroShop.Models
         public int ProductId { get; set; }
 
         [MaxLength(125)]
+        [Display(Name = "Article Name")]
         public string Name { get; set; }
+
         public string Description { get; set; }
         [Column(TypeName = "Money")]
         public decimal Price { get; set; }
+
+        [Display(Name = "Image")]
         public string ImageURL { get; set; }
 
+        [Display(Name = "Category")]
         public int CategoryId { get; set; }
+
         public CategoryModel Category { get; set; }
     }
 }

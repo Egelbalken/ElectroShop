@@ -12,11 +12,17 @@ namespace ElectroShop.Models
         public int CategoryId { get; set; }
 
         [MaxLength(125)]
+        [Display(Name = "Type")]
         public string Name { get; set; }
+
         public string Description { get; set; }
+        
+        [Display(Name = "Image")]
         public string ImageURL { get; set; }
 
         public int? ParentCategoryId { get; set; }
+        
+        [Display(Name = "Category")]
         public CategoryModel ParentCategory { get; set; }
         public List<CategoryModel> SubCategories { get; set; } = new List<CategoryModel>();
         public List<ProductModel> Products { get; set; } = new List<ProductModel>();
