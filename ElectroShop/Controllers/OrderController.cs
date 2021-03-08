@@ -43,8 +43,13 @@ namespace ElectroShop.Controllers
         [Authorize("Customer")]
         public IActionResult Checkout(CheckoutViewModel checkoutViewModel)
         {
-            var userId = _userManager.GetUserId(User);
+            if (!ModelState.IsValid)
+            {
+                checkoutViewModel.ShoppingCartItems = _shoppingCart.GetShoppingCartItems();
+                return View(checkoutViewModel);
+            }
 
+            var userId = _userManager.GetUserId(User);
             var newOrder = new OrderModel
             {
                 Customer = _applicationDbContext.ApplicationUsers.Find(userId),
