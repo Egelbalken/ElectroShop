@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ElectroShop.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ElectroShop.Controllers
 {
@@ -27,6 +28,7 @@ namespace ElectroShop.Controllers
         }
 
         [HttpGet]
+        [Authorize("Customer")]
         public IActionResult Checkout()
         {
             var checkoutViewModel = new CheckoutViewModel
@@ -38,6 +40,7 @@ namespace ElectroShop.Controllers
         }
 
         [HttpPost]
+        [Authorize("Customer")]
         public IActionResult Checkout(CheckoutViewModel checkoutViewModel)
         {
             var userId = _userManager.GetUserId(User);
