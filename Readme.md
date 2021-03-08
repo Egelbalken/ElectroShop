@@ -37,7 +37,7 @@ V1: Dag Torsdag, Shopping Cart och Session har tillförts till projektet, Checko
 
 V1: Fredag, Uppdaterat Context seed med en standard Customer. Essentiel del kvar för projektet är "Check out" för Godkänt. Lägga till produkter i Cart/CheckOut med + / - (efterfrågas av kund).
 
-V2: Måndag, Planerar att lösa CheckOut funktionen, Orderhanteringen, En PDF ska genereras och övriga justeringar i frontend. Möjligen, använda cookies istället för Sessions då de här en längre livslängd. CheckOut och Orderhantering preliminärt löst, Fokus ligger på att generera ett kvitto i form av PDF, fortsätta styla projektet via Html & CSS. Efter Completed Purchase vill man kunna se sitt ordernummer & Orderdetaljer från Databasen.
+V2: Måndag, Planerar att lösa CheckOut funktionen, Orderhanteringen, En PDF ska genereras och övriga justeringar i frontend. Möjligen, använda cookies istället för Sessions då de här en längre livslängd. // CheckOut och Orderhantering preliminärt löst, Fokus ligger på att generera ett kvitto i form av PDF, fortsätta styla projektet via Html & CSS. Efter Completed Purchase vill man kunna se sitt ordernummer & Orderdetaljer från Databasen.
 
 V3:
 
