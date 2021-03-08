@@ -45,6 +45,7 @@ tfoot {
 
 .shadow {
     box-shadow: 2px 2px 5px black !important;
+    margin: 10px;
 }
 
 .clear {
@@ -127,24 +128,26 @@ body {
 }
 
 .cartImage {
-    float: right;
-    width: 70px;
+    margin-left:10px;
+    width: 50px;
 }
 
     .cartImage:active,
     .cartImage:hover {
         float: right;
-        transition: 0.2s;
-        width: 80px;
+        transition: 0.25s;
+        width: 60px;
     }
 
-
+#search {
+    text-align: center;
+    padding: 10px;
+}
 
 #covid {
     background-color: #FF7F11;
     box-shadow: 2px 2px 5px black;
     border-radius: 5px;
-    margin: auto !important; 
     text-align: center; 
     padding: 0px;
 }

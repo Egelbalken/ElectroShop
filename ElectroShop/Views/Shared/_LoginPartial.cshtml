@@ -30,6 +30,6 @@
         </li>
     }
 </ul>
-    <div>
-            <a asp-action="Index" asp-controller="ShoppingCart"><img class="cartImage" src="/images/cart.png"/></a>
-    </div>
+            
+            <a asp-action="Index" asp-controller="ShoppingCart"><img class="cartImage" src="/images/cart.png" />@await Component.InvokeAsync("ShoppingCartSummary")</a>
+

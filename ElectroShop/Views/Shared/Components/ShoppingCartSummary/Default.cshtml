@@ -1,0 +1,11 @@
+﻿@model ShoppingCartViewModel
+
+<!-- This will show a glyphicon shopping cart whit the counted amount in icon. -->
+@if (Model.ShoppingCart.ShoppingCartItems.Count > 0)
+{
+        <a>
+            <span class="glyphicon glyphicon-cart" aria-hidden="false"></span>
+            <span id="cart-status">
+            @Model.ShoppingCart.ShoppingCartItems.Count</span>
+        </a>
+}

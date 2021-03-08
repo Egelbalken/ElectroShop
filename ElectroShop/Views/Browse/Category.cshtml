@@ -1,21 +1,22 @@
 ﻿@model BrowseCategoryViewModel
 
-@if (Model.Category.ParentCategory != null)
-{
-    <a asp-action="Category" asp-route-id="@Model.Category.ParentCategory.CategoryId">Return to @Model.Category.ParentCategory.Name</a>
-}
-
-<div>
-    <h1>@Model.Category.Name</h1>
-    <h3>@Model.Category.Description</h3>
-</div>
 
 <div class="jumbotron">
+    @if (Model.Category.ParentCategory != null)
+    {
+        <a class="shadow btn btn-primary" asp-action="Category" asp-route-id="@Model.Category.ParentCategory.CategoryId">Return to @Model.Category.ParentCategory.Name</a>
+    }
+    <p></p>
+    <div>
+        <h1>@Model.Category.Name</h1>
+        <h4>@Model.Category.Description</h4>
+    </div>
+    <hr />
 
     <div class="row">
         @foreach (var category in Model.Category.SubCategories)
         {
-            <a asp-action="Category" asp-route-id="@category.CategoryId">
+            <a class="shadow btn btn-primary" asp-action="Category" asp-route-id="@category.CategoryId">
                 <div class="col-md-4 m-1">
                     <img class="productimage" src="@category.ImageURL" />
                     <span>@category.Name</span>
@@ -25,7 +26,7 @@
     </div>
 
     <table class="table">
-        <thead>
+        <thead style="background-color:#ACBFA4;">
             <tr>
                 <th>Image</th>
                 <th>Name</th>

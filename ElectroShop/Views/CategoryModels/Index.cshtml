@@ -7,9 +7,9 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Category index</h1>
 <div class="jumbotron">
-    
+<h4>Category index</h4>
+    <hr />
     @foreach(var item in Model)
     {
     <a class="shadow btn btn-light mx-1" asp-action="Category" asp-controller="Browse" asp-route-id="@item.CategoryId" >@item.Name</a>

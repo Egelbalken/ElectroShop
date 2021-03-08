@@ -10,7 +10,7 @@
 <body>
     <header>
         <din class="clear"></din>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-custom bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-custom bg-white border-bottom box-shadow">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img class="logo" src="/images/electroshop7.png" alt="Noimage"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -30,25 +30,34 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="CategoryModels" asp-action="Index">Category</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="FAQ">FAQ</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contact</a>
                         </li>
-                        <li>
-                            <form asp-controller="Browse" asp-action="search" id="search" method="post" class="form-inline my-2 my-lg-0">
-                                <input class="form-control mr-lg-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-                            </form>
-                        </li>
+                        <!-- Invoke the chopping cart viewComponent -->
+                        @*<li>
+                            <a asp-action="Index" asp-controller="ShoppingCart"><img class="cartImage" src="/images/cart.png" /></a>
+                            @await Component.InvokeAsync("ShoppingCartSummary")
+                        </li>*@
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    <div id="covid">
+        <a>
+            Covid-19 information: Do not go out, but do it.
+        </a>
+    </div>
+    <div class="container">
+        <div id="search" class="center">
+            <form asp-controller="Browse" asp-action="search" method="post" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-lg-2" type="search" placeholder="Product Search..." aria-label="Search">
+                <button class="shadow btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

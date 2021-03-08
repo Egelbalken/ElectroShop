@@ -24,11 +24,6 @@ namespace ElectroShop.Controllers
             return View();
         }
 
-        public IActionResult Faq()
-        {
-            return View();
-        }
-
         public IActionResult About()
         {
             return View();
@@ -38,7 +33,7 @@ namespace ElectroShop.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return RedirectToAction("PageNotFound", "ErrorController");
+            return RedirectToAction("PageNotFound", "Error");
             //return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
