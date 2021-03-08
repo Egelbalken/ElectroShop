@@ -28,7 +28,7 @@ namespace ElectroShop.Controllers
         }
 
         [HttpGet]
-        [Authorize("Customer")]
+        [Authorize(Roles = "Customer")]
         public IActionResult Checkout()
         {
             var checkoutViewModel = new CheckoutViewModel
@@ -40,7 +40,7 @@ namespace ElectroShop.Controllers
         }
 
         [HttpPost]
-        [Authorize("Customer")]
+        [Authorize(Roles = "Customer")]
         public IActionResult Checkout(CheckoutViewModel checkoutViewModel)
         {
             if (!ModelState.IsValid)

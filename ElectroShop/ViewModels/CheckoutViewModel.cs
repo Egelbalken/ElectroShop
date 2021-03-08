@@ -23,6 +23,8 @@ namespace ElectroShop.ViewModels
         [Display(Name = "Email address")]
         public string EmailAddress { get; set; }
         [Required]
+        public string City { get; set; }
+        [Required]
         [MaxLength(125)]
         public string Country { get; set; }
         [Required]

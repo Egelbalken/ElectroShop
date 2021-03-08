@@ -60,5 +60,7 @@ namespace ElectroShop.Data
                 .HasForeignKey(child => child.ParentCategoryId);
 
         }
+
+        public DbSet<ElectroShop.Models.OrderDetailModel> OrderDetailModel { get; set; }
     }
 }

@@ -20,6 +20,29 @@ a.navbar-brand {
     text-align: center;
 }
 
+.table, th, td {
+    border: 1px solid #262626;
+    box-shadow: -1px 1px 0px 0px #262626;
+    font-weight: bold;
+}
+
+thead {
+    color: #262626;
+    box-shadow: 2px 2px 5px #262626;
+}
+
+tbody {
+    color: #262626;
+    box-shadow: 2px 2px 5px #262626;
+}
+
+tfoot {
+    color: #262626;
+    box-shadow: 2px 2px 5px #262626;
+    color: #FF1B1C; 
+    font-weight: bolder;
+}
+
 .shadow {
     box-shadow: 2px 2px 5px black !important;
 }
