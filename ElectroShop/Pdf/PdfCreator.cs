@@ -34,15 +34,15 @@ namespace ElectroShop.Pdf
             var orderDetails = _applicationDbContext.OrderDetailModel.Include(or => or.Order).Include(op => op.Product).Where(id => id.Order.OrderId == order.OrderId);
 
             invoice.Open();
-            invoice.Add(new Paragraph("   -------------------------------------------------------------------------------------------------------"));
-            invoice.Add(new Paragraph("------------------------------------  Invoice from ElectroShop AB  ------------------------------------"));
-            invoice.Add(new Paragraph("   -------------------------------------------------------------------------------------------------------"));
+            invoice.Add(new Paragraph("         -------------------------------------------------------------------------------------------------------"));
+            invoice.Add(new Paragraph("    ------------------------------------  Invoice from ElectroShop AB  ------------------------------------"));
+            invoice.Add(new Paragraph("         -------------------------------------------------------------------------------------------------------"));
             invoice.Add(new Paragraph("                                        Electro-cutied-order                                           "));
             invoice.Add(new Paragraph(""));
             invoice.Add(new Paragraph("///////////////////////////////////////////   Details  ////////////////////////////////////////////////"));
             invoice.Add(new Paragraph(""));
             invoice.Add(new Paragraph("                                             Order Id: " + order.OrderId));
-            invoice.Add(new Paragraph("-------------------------------------------------------------------------------------------------------"));
+            invoice.Add(new Paragraph("        -------------------------------------------------------------------------------------------------------"));
             invoice.Add(new Paragraph(""));
             foreach (var detail in orderDetails)
             {
@@ -50,7 +50,13 @@ namespace ElectroShop.Pdf
                 invoice.Add(new Paragraph("                                         Product Name: " + detail.Product.Name));
                 invoice.Add(new Paragraph("                                         Price: " + detail.Product.Price.ToString()));
                 invoice.Add(new Paragraph(""));
-                invoice.Add(new Paragraph("---------------------------------------------------------------------------------------------------"));
+                invoice.Add(new Paragraph("        ---------------------------------------------------------------------------------------------------"));
+                invoice.Add(new Paragraph("        ---------------------------------------------------------------------------------------------------"));
+                invoice.Add(new Paragraph("        ---------------------------------------------------------------------------------------------------"));
+                invoice.Add(new Paragraph("        -----------------------------------          NO RETURN GRANTED      -------------------------------"));
+                invoice.Add(new Paragraph("        ---------------------------------------------------------------------------------------------------"));
+                invoice.Add(new Paragraph("        ---------------------------------------------------------------------------------------------------"));
+                invoice.Add(new Paragraph("        ---------------------------------------------------------------------------------------------------"));
             }
             // start
 
