@@ -72,9 +72,10 @@ namespace ElectroShop.Controllers
         // Get info from DB and 
         public IActionResult Invoice(int orderId)
         {
-            var pdfCreator = new PdfCreator();
+            var pdfCreator = new PdfCreator(_applicationDbContext);
             string createdPdf = 
-            pdfCreator.CreatePdf();
+            pdfCreator.CreatePdf(orderId);
+
 
             var order =
             _applicationDbContext.Orders.Find(orderId);
