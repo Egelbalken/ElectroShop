@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Invoice";
+}
+
+<div class="jumbotron">
+
+    <h1>Invoice</h1>
+    <h3>Order Success!</h3>
+    <p></p>
+    <p>You can print out or download your invoice from the page.</p>
+    <p></p>
+    <hr />
+    <div class="pdf">
+        <object class="pdf" data="data:application/pdf;base64,@System.Convert.ToBase64String((Byte[])ViewData["PDF"])" type="application/pdf" />
+        <embed class="pdf" src="data:application/pdf;base64, @System.Convert.ToBase64String((Byte[])ViewData["PDF"])" type="application/pdf" />
+    </div>
+    </object>
+</div>

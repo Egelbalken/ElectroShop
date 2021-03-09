@@ -16,5 +16,7 @@ namespace ElectroShop.Models
 
         public decimal TotalCost => OrderDetails.Select(order => order.Product.Price * order.Quantity).Sum();
 
+        public string Invoice { get; set; }
+
     }
 }

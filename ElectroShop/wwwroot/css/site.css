@@ -76,6 +76,11 @@ a {
   border-color: #1861ac;
 }
 
+.pdf {
+    width:100%;
+    height:1000px;
+}
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
     background-color: #ff7f11;

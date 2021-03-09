@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ElectroShop.Models;
+using ElectroShop.Pdf;
 using ElectroShop.Data;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -64,7 +66,30 @@ namespace ElectroShop.Controllers
             _applicationDbContext.Orders.Add(newOrder);
             _applicationDbContext.SaveChanges();
 
-            return RedirectToAction();
+            return RedirectToAction("Invoice", new { orderId = newOrder.OrderId });
+        }
+
+        // Get info from DB and 
+        public IActionResult Invoice(int orderId)
+        {
+            var pdfCreator = new PdfCreator();
+            string createdPdf = 
+            pdfCreator.CreatePdf();
+
+            var order =
+            _applicationDbContext.Orders.Find(orderId);
+
+            order.Invoice = createdPdf;
+            
+            _applicationDbContext.Orders.Update(order);
+            _applicationDbContext.SaveChanges();
+            byte[] bytePdf = createdPdf.Select(s => (byte)s).ToArray();
+            MemoryStream stream = new MemoryStream();
+            stream.Write(bytePdf);
+
+            ViewData["PDF"] = bytePdf;
+
+            return View();
         }
     }
 }
