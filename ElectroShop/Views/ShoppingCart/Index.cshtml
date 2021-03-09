@@ -20,9 +20,11 @@
             {
                 <tr>
                     <td>
-                        <form action="" poster="@line.Amount">
+                        <form asp-controller="ShoppingCart" asp-action="UpdateShoppingCart" metod="@line.Amount">
                             <label for="quantity">Quantity:</label>
-                            <input value="@line.Amount" type="number" id="quantity" name="quantity" min="1" max="5">
+                            <input value="@line.Amount" type="number" id="quantity" name="newAmount" min="1" max="">
+                            <input type="hidden" name="productId" value="@line.product.ProductId"/>
+                            <input class="shadow btn btn-success" type="submit" id="quantityButton" name="quantity" value="Change Amount"/>
                         </form>
                     <td class="text-left">@line.product.Name</td>
                     <td class="text-right">@line.product.Price.ToString("c")</td>

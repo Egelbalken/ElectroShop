@@ -61,6 +61,18 @@ namespace ElectroShop.Models
             _applicationDbContext.SaveChanges();
         }
 
+        // Updates the amount in shoppingcart sessions.
+        public void UpdateCart(ProductModel selectedProduct, int amount)
+        {
+            var selectedProductItem =
+                _applicationDbContext.ShoppingCartItems.SingleOrDefault(
+                    s => s.product.ProductId == selectedProduct.ProductId && s.ShoppingCartId == ShoppingCartId);
+
+            selectedProductItem.Amount = amount;
+            _applicationDbContext.ShoppingCartItems.Update(selectedProductItem);
+            _applicationDbContext.SaveChanges();
+        }
+
         // Remove a cart item.
         public int RemoveFromCart(ProductModel product)
         {

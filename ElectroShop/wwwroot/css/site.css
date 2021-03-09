@@ -43,6 +43,19 @@ tfoot {
     font-weight: bolder;
 }
 
+#quantity{
+    width:50px;
+    height: 38px;
+    border-radius: 5px;
+    padding: 10px;
+    margin:auto;
+}
+
+#quantityButton {
+    margin-bottom: 10px;
+    vertical-align: initial !important;
+}
+
 .shadow {
     box-shadow: 2px 2px 5px black !important;
     margin: 10px;

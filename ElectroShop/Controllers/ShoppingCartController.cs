@@ -22,7 +22,6 @@ namespace ElectroShop.Controllers
             _shoppingCart = shoppingCart;
         }
 
-
         public IActionResult Index()
         {
             var items = _shoppingCart.GetShoppingCartItems();
@@ -35,6 +34,25 @@ namespace ElectroShop.Controllers
             };
 
             return View(shoppingCartViewModel);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="newAmount"></param>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult UpdateShoppingCart(int newAmount, int productId)
+        {
+
+            var selectedProduct = _productRepository.AllProducts.FirstOrDefault(p => productId == p.ProductId);
+
+            if (selectedProduct != null)
+            {
+                _shoppingCart.UpdateCart(selectedProduct, newAmount);
+            }
+            return RedirectToAction("Index");
         }
 
         public RedirectToActionResult AddToShoppingCart(int productId)
