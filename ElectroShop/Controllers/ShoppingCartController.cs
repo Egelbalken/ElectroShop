@@ -63,7 +63,7 @@ namespace ElectroShop.Controllers
             {
                 _shoppingCart.AddToCart(selectedProduct, 1);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "ProductModels");
         }
 
         public RedirectToActionResult RemoveFromShoppingCart(int productId)

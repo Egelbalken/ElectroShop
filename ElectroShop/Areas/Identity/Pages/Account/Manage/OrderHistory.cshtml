@@ -1,0 +1,22 @@
+﻿@page
+@model ElectroShop.Areas.Identity.Pages.Account.Manage.OrderHistoryModel
+@{
+}
+
+<div>
+    <ul>
+        @foreach (var order in Model.OrderHistory)
+        {
+            <li>Customer Id: @order.Customer</li>
+            <li>Order number: @order.OrderId</li>
+            <li>Order details: @order.OrderDetails</li>
+            <li>Invoice:</li>
+            <li>
+            <div class="pdf">
+                <object class="pdf" data="data:application/pdf;base64,@System.Convert.ToBase64String((Byte[])ViewData["PDF"])" type="application/pdf" />
+                <embed class="pdf" src="data:application/pdf;base64, @System.Convert.ToBase64String((Byte[])ViewData["PDF"])" type="application/pdf" />
+            </div>
+            </li>
+        }
+    </ul>
+</div>

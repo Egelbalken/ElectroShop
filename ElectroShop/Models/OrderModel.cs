@@ -18,5 +18,7 @@ namespace ElectroShop.Models
 
         public string Invoice { get; set; }
 
+        public Receipt Receipt { get; set; }
+
     }
 }

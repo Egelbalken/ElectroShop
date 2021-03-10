@@ -52,8 +52,24 @@ namespace ElectroShop.Controllers
             }
 
             var userId = _userManager.GetUserId(User);
+            // Save the Receipt to the database.
+            Receipt receipt = new Receipt
+            {
+                ReceiptFirstName = checkoutViewModel.FirstName,
+                ReceiptLastName = checkoutViewModel.LastName,
+                ReceiptStreetAddress = checkoutViewModel.StreetAddress,
+                ReceiptState = checkoutViewModel.State,
+                ReceiptZipCode = checkoutViewModel.ZipCode,
+                ReceiptCity = checkoutViewModel.City,
+                ReceiptCountry = checkoutViewModel.Country,
+                ReceiptPhoneNumber = checkoutViewModel.PhoneNumber,
+                ReceiptEmailAddress = checkoutViewModel.EmailAddress
+            };
+
+            // Saves the new order,receipt and orderteails to uniqe users id to the database.
             var newOrder = new OrderModel
             {
+                Receipt = receipt,
                 Customer = _applicationDbContext.ApplicationUsers.Find(userId),
                 OrderDetails = _shoppingCart.GetShoppingCartItems()
                     .Select(cartItem => new OrderDetailModel
@@ -63,6 +79,8 @@ namespace ElectroShop.Controllers
                     }).ToList()
             };
 
+            // Order added and saved
+            // Receipt added and saved
             _applicationDbContext.Orders.Add(newOrder);
             _applicationDbContext.SaveChanges();
 
@@ -89,7 +107,8 @@ namespace ElectroShop.Controllers
             stream.Write(bytePdf);
 
             ViewData["PDF"] = bytePdf;
-
+            _shoppingCart.ClearCart();
+            
             return View();
         }
     }
