@@ -41,6 +41,8 @@ V2: Måndag, Planerar att lösa CheckOut funktionen, Orderhanteringen, En PDF sk
 
 V2: Onsdag, Kvitto i form av PDF till använderen är slutförd. Ordernummer och detaljer efter "Completed Purchase" är också slutförd. Uppdatera "Category" Så att man inte automatiskt byter sida (redirect) utan stannar kvar när man lägger till produkter. Ta en titt på ShoppingCartCounter. Räkna varje item och inte bara Just Produkten. I Identity Profile, OrderHistory & Detail. Skapa en ReadMe och kommentera projektet för att få en tydligare bild.
 
+Inför presentation, Skapa diagram & Bilder, Visa processen vid skapandet av projektetsdelar. (POWERpoint)
+
 V3:
 
 V4:
