@@ -39,6 +39,10 @@ V1: Fredag, Uppdaterat Context seed med en standard Customer. Essentiel del kvar
 
 V2: Måndag, Planerar att lösa CheckOut funktionen, Orderhanteringen, En PDF ska genereras och övriga justeringar i frontend. Möjligen, använda cookies istället för Sessions då de här en längre livslängd. // CheckOut och Orderhantering preliminärt löst, Fokus ligger på att generera ett kvitto i form av PDF, fortsätta styla projektet via Html & CSS. Efter Completed Purchase vill man kunna se sitt ordernummer & Orderdetaljer från Databasen.
 
+V2: Onsdag, Kvitto i form av PDF till använderen är slutförd. Ordernummer och detaljer efter "Completed Purchase" är också slutförd. Uppdatera "Category" Så att man inte automatiskt byter sida (redirect) utan stannar kvar när man lägger till produkter. Ta en titt på ShoppingCartCounter. Räkna varje item och inte bara Just Produkten. I Identity Profile, OrderHistory & Detail. Skapa en ReadMe och kommentera projektet för att få en tydligare bild.
+
+Inför presentation, Skapa diagram & Bilder, Visa processen vid skapandet av projektetsdelar. (POWERpoint & Drawio)
+
 V3:
 
 V4:
