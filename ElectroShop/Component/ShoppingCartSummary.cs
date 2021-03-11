@@ -33,6 +33,7 @@ namespace ElectroShop.Component
             {
                 ShoppingCart = _shoppingCart,
                 ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal()
+                
             };
 
             // Under shared/Component/ShoppingCartSummary create a Default view,

@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ElectroShop.Controllers
 {
+    [Authorize(Roles = "Customer")]
     public class OrderController : Controller
     {
         private readonly ShoppingCart _shoppingCart;
@@ -107,6 +108,8 @@ namespace ElectroShop.Controllers
             stream.Write(bytePdf);
 
             ViewData["PDF"] = bytePdf;
+
+            // Call clearCart to clear the shoppingcart.
             _shoppingCart.ClearCart();
             
             return View();

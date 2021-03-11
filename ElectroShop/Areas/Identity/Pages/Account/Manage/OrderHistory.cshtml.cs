@@ -31,7 +31,7 @@ namespace ElectroShop.Areas.Identity.Pages.Account.Manage
         {
             var userId = _userManager.GetUserId(User);
 
-            var orderHistorys = _applicationDBcontext.Orders.Include(customers => customers.Customer).Where(orders => orders.Customer.Id == userId);
+            var orderHistorys = _applicationDBcontext.Orders.Include(customers => customers.Customer).Include(rp => rp.Receipt).Include(od => od.OrderDetails).Where(orders => orders.Customer.Id == userId);
 
             OrderHistory = orderHistorys.ToList();
         }

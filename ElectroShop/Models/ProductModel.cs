@@ -26,6 +26,10 @@ namespace ElectroShop.Models
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
 
+        public bool OnSaleProduct { get; set; }
+
+        public double OnSalePrice { get; set; }
+
         public CategoryModel Category { get; set; }
     }
 }

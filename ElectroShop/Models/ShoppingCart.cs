@@ -127,5 +127,12 @@ namespace ElectroShop.Models
             var total = _applicationDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId).Select(c => c.product.Price * c.Amount).Sum();
             return total;
         }
+
+        // Returns the amount of products in shoppingcart
+        public decimal GetShoppingCartTotalAmount()
+        {
+            var total = _applicationDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId).Select(c => c.Amount).Sum();
+            return total;
+        }
     }
 }

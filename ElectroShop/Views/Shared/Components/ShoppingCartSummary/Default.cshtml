@@ -4,6 +4,6 @@
 @if (Model.ShoppingCart.ShoppingCartItems.Count > 0)
 {
         <a>
-            @Model.ShoppingCart.ShoppingCartItems.Count
+            @Model.ShoppingCart.GetShoppingCartTotalAmount()
         </a>
 }

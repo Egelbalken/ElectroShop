@@ -7,6 +7,7 @@ using ElectroShop.Data;
 using iTextSharp;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace ElectroShop.Pdf
@@ -25,6 +26,7 @@ namespace ElectroShop.Pdf
 
         //use a variable to let my code fit across the page...
 
+        
         public string CreatePdf(int orderId)
         {
             //use a variable to let my code fit across the page...
@@ -54,9 +56,10 @@ namespace ElectroShop.Pdf
             }
 
             invoice.Add(new Paragraph("______________________________________________________________________________"));
+            invoice.Add(new Paragraph("      "));
+            invoice.Add(new Paragraph("      "));
             invoice.Add(new Paragraph("      Customer receipt:"));
             invoice.Add(new Paragraph("      "));
-
             invoice.Add(new Paragraph("      First name: " + order.Receipt.ReceiptFirstName));
             invoice.Add(new Paragraph("      Last name: " + order.Receipt.ReceiptLastName));
             invoice.Add(new Paragraph("      Email: " + order.Receipt.ReceiptEmailAddress));
@@ -71,11 +74,15 @@ namespace ElectroShop.Pdf
             invoice.Add(new Paragraph("______________________________________________________________________________"));
             invoice.Add(new Paragraph("      "));
             invoice.Add(new Paragraph("      "));
-            invoice.Add(new Paragraph("      ElectroShop AB"));
-            invoice.Add(new Paragraph("      Lexicon Street 10004"));
-            invoice.Add(new Paragraph("      30257 Lexicon City"));
-            invoice.Add(new Paragraph("      Phone: 555 112 112 122"));
-            invoice.Add(new Paragraph("      Email: electrosupport@electroshop.com"));
+            invoice.Add(new Paragraph("    * * * * * * * * * * * * * * * * * * * * * * * * * * *"));
+            invoice.Add(new Paragraph("    *  ElectroShop AB                                   "));
+            invoice.Add(new Paragraph("    *  Lexicon Street 10004                             "));
+            invoice.Add(new Paragraph("    *  30257 Lexicon City                               "));
+            invoice.Add(new Paragraph("    *  Phone: 555 112 112 122                           "));
+            invoice.Add(new Paragraph("    *  Email: electrosupport@electroshop.com            "));
+            invoice.Add(new Paragraph("    * * * * * * * * * * * * * * * * * * * * * * * * * * *"));
+            invoice.Add(new Paragraph("      "));
+            invoice.Add(new Paragraph("      "));
             invoice.Add(new Paragraph("______________________________________________________________________________"));
 
 

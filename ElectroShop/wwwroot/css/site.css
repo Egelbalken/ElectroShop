@@ -81,6 +81,11 @@ a {
     height:1000px;
 }
 
+.listseparator {
+    border: 1px solid black; 
+    width:200px;
+}
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
     background-color: #ff7f11;
