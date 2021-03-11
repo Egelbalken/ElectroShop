@@ -47,7 +47,9 @@
                     </td>
                     <td>@product.Price</td>
                     <td>
-                        <a class="shadow btn btn-secondary mx-1" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@product.ProductId">Add to cart</a>
+                        <a class="shadow btn btn-secondary mx-1" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" 
+                           asp-route-productId="@product.ProductId" asp-route-returnUrl="~/Browse/Category/@Model.Category.CategoryId">Add to cart</a>
+                        
                         <a class="shadow btn btn-warning mx-1" asp-controller="ProductModels" asp-action="Details" asp-route-id="@product.ProductId">Details</a>
                     </td>
                 </tr>

@@ -55,7 +55,7 @@ namespace ElectroShop.Controllers
             return RedirectToAction("Index");
         }
 
-        public RedirectToActionResult AddToShoppingCart(int productId)
+        public IActionResult AddToShoppingCart(int productId, string returnUrl)
         {
             var selectedProduct = _productRepository.AllProducts.FirstOrDefault(p => productId == p.ProductId);
 
@@ -63,7 +63,13 @@ namespace ElectroShop.Controllers
             {
                 _shoppingCart.AddToCart(selectedProduct, 1);
             }
-            return RedirectToAction("Index", "ProductModels");
+
+            // Redirect to the passed Url from the incoming view request, 
+            // if the returnUrl value is null, redirect to ProductModels.
+            // e.g. passing the returnUrl from the a views anchor tag, use the following routing:
+            // asp-route-returnUrl="~/Browse/Category/@Model.Category.CategoryId"
+            returnUrl = returnUrl ?? Url.Content("~/ProductModels");
+            return LocalRedirect(returnUrl);
         }
 
         public RedirectToActionResult RemoveFromShoppingCart(int productId)
