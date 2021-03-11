@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace ElectroShop.Models
 {
+    // Hierarchical category data.
+    // One category can have many subcategories, 
+    // and one category can have one parent category.
+    // One category can have many products.
     public class CategoryModel
     {
         [Key]

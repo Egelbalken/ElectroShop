@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace ElectroShop.Models
 {
+    // OrderDetail contains the product details of the purchased product, 
+    // including the quantity, order ID and product ID.
+    // It has a one to many relationship with the Order, and 
+    // one to one relationship with the Product.
+
     public class OrderDetailModel
     {
         [Key]

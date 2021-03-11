@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ElectroShop.Models
 {
+    // The description of the Product containing necessary information.
+    // It has a one to one relationship with the OrderDetail.
+    // And a many to one relationship with the Category.
     public class ProductModel
     {
         [Key]
