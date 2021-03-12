@@ -1,5 +1,9 @@
-﻿@model IEnumerable<ShoppingCartItem>
+﻿@using System.Globalization;
+@model IEnumerable<ShoppingCartItem>
 
+@{
+   var culture = CultureInfo.CreateSpecificCulture("sv-SE");
+}
 
 <table class="table text-center" style="margin:auto;">
     <thead style="background-color:#ACBFA4;">
@@ -15,7 +19,7 @@
             <tr>
                 <td class="text-left">@line.Amount</td>
                 <td class="text-left">@line.product.Name</td>
-                <td class="text-right">@line.product.Price.ToString("c")</td>
+                <td class="text-right">@line.product.Price.ToString("c",culture)</td>
             </tr>
         }
     </tbody>

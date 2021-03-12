@@ -1,4 +1,9 @@
-﻿@model ShoppingCartViewModel
+﻿@using System.Globalization;
+@model ShoppingCartViewModel
+
+@{
+   var culture = CultureInfo.CreateSpecificCulture("sv-SE");
+}
 
 
 <h1>Your shopping cart</h1>
@@ -27,9 +32,9 @@
                             <input class="shadow btn btn-success" type="submit" id="quantityButton" name="quantity" value="Change Amount"/>
                         </form>
                     <td class="text-left">@line.product.Name</td>
-                    <td class="text-right">@line.product.Price.ToString("c")</td>
+                    <td class="text-right">@line.product.Price.ToString("c",culture)</td>
                     <td class="text-right">
-                            @((line.Amount * line.product.Price).ToString("c"))
+                            @((line.Amount * line.product.Price).ToString("c",culture))
                     </td>
                     <td>
                         <a class="shadow btn btn-warning" asp-action="RemoveFromShoppingCart" asp-route-productId="@line.product.ProductId">Remove</a>
@@ -41,7 +46,7 @@
             <tr>
                 <td colspan="3" class="text-right">Total:</td>
                 <td class="text-right">
-                    @Model.ShoppingCartTotal.ToString("c")
+                    @Model.ShoppingCartTotal.ToString("c",culture)
                 </td>
             </tr>
         </tfoot>
