@@ -21,7 +21,7 @@ namespace ElectroShop.Models
         [Display(Name = "Last name")]
         public string ReceiptLastName { get; set; }
         [Required]
-        [MaxLength(125)]
+        [MaxLength(125), EmailAddress]
         [Display(Name = "Email address")]
         public string ReceiptEmailAddress { get; set; }
         [Required]
@@ -41,7 +41,7 @@ namespace ElectroShop.Models
         [MaxLength(125)]
         public string ReceiptState { get; set; }
         [Required]
-        [MaxLength(12)]
+        [MaxLength(12), Phone]
         [Display(Name = "Phone number")]
         public string ReceiptPhoneNumber { get; set; }
     }

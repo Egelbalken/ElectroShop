@@ -19,10 +19,11 @@ namespace ElectroShop.ViewModels
         [Display(Name = "Last name")]
         public string LastName { get; set; }
         [Required]
-        [MaxLength(125)]
+        [MaxLength(125), EmailAddress]
         [Display(Name = "Email address")]
         public string EmailAddress { get; set; }
         [Required]
+        [MaxLength(125)]
         public string City { get; set; }
         [Required]
         [MaxLength(125)]
@@ -39,7 +40,7 @@ namespace ElectroShop.ViewModels
         [MaxLength(125)]
         public string State { get; set; }
         [Required]
-        [MaxLength(12)]
+        [MaxLength(12), Phone]
         [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
         // Det här är din order info
