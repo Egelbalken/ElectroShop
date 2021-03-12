@@ -14,7 +14,6 @@ namespace ElectroShop.Pdf
 {
     public class PdfCreator
     {
-        /
         private readonly ApplicationDbContext _applicationDbContext;
 
         public PdfCreator(ApplicationDbContext applicationDb)

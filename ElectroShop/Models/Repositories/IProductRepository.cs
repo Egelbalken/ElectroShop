@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace ElectroShop.Models
 {
+    /// <summary>
+    /// Repository for the ProductModel
+    /// </summary>
     public interface IProductRepository
     {
         IEnumerable<ProductModel> AllProducts { get; }

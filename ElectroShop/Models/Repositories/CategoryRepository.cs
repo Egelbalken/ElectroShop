@@ -25,7 +25,7 @@ namespace ElectroShop.Models
 
         /// <summary>
         /// Fetch the category with the selected category ID. 
-        /// Includes subcategories, parent categoryh and products.
+        /// Includes subcategories, parent category and products.
         /// </summary>
         /// <param name="id">The category ID.</param>
         /// <returns>The selected CategoryModel, null if not found.</returns>
@@ -39,8 +39,8 @@ namespace ElectroShop.Models
         }
 
         /// <summary>
-        /// Recursively retrieves all products from the selected category, and all its descendant subcategories.
-        /// In a depth-first search manner.
+        /// Recursively retrieves all products from the selected category, and all its descendant subcategories by
+        /// doing a tree traversal.
         /// </summary>
         /// <param name="categoryId">The category ID</param>
         /// <returns>IEnumerable of ProductModel</returns>
