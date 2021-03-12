@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace ElectroShop.ViewModels
 {
-    // Det här är formen för att slutföra köp
+    /// <summary>
+    /// This Class defines the form that takes the billing and shipping info from customer 
+    /// This info will later be paird Whit the Receipt info that will be stored in to
+    /// customers order in databas via the OrderController.
+    /// </summary>
     public class CheckoutViewModel 
     {
         [Required]

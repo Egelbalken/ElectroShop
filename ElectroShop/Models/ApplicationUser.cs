@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ElectroShop.Models
 {
+   /// <summary>
+   /// 
+   /// </summary>
     public class ApplicationUser : IdentityUser
     {
         public string FirstName { get; set; }

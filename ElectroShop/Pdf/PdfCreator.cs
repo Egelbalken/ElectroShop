@@ -14,6 +14,7 @@ namespace ElectroShop.Pdf
 {
     public class PdfCreator
     {
+        /
         private readonly ApplicationDbContext _applicationDbContext;
 
         public PdfCreator(ApplicationDbContext applicationDb)
@@ -21,12 +22,17 @@ namespace ElectroShop.Pdf
             _applicationDbContext = applicationDb;
         }
 
-
+        // Instanse of the document pdf creater.
         Document invoice = new Document(PageSize.A4);
 
         //use a variable to let my code fit across the page...
 
-        
+        /// <summary>
+        /// The Package ITextSharp is added to create a pdf invocise recet of the order.
+        /// Sorry that the documentaion of this is bad. OBS! Can redone in javaScript.
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
         public string CreatePdf(int orderId)
         {
             //use a variable to let my code fit across the page...

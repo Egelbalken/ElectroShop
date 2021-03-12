@@ -12,7 +12,11 @@ namespace ElectroShop.TagHelpers
 
         public string Content { get; set; }
 
-        // taghelper to send email to conntact ElectroShop
+        /// <summary>
+        /// Taghelper to send email to conntact ElectroShop, this is deisplayed at the ContactController
+        /// </summary>
+        /// <param name="context">The context of email</param>
+        /// <param name="output">a mailto and adress and content of mail.</param>
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "a";

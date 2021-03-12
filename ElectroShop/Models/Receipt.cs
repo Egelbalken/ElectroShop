@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace ElectroShop.Models
 {
+    /// <summary>
+    /// This calss defines the shipping address saved to the database.
+    /// </summary>
     public class Receipt 
-
     {   
         [Key]
         public int ReceiptId { get; set; }

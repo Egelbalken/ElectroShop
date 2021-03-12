@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace ElectroShop.Models
 {
+    /// <summary>
+    /// Class that defines all the shoppingcart propertys
+    /// </summary>
     public class ShoppingCartItem
     {
         public int ShoppingCartItemId { get; set; }

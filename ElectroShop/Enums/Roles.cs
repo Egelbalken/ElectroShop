@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace ElectroShop.Enums
 {
+    // Enum to define the Roles for customers and Admin.
     public enum Roles
     {
         Admin,
