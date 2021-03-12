@@ -14,12 +14,23 @@ namespace ElectroShop.Controllers
         private readonly ICategoryRepository _categoryRepository;
         private readonly IProductRepository _productRepository;
 
+        /// <summary>
+        /// Constructor injection of the interfaces from ICategoryRepository and IProductRepository
+        /// </summary>
+        /// <param name="categoryRepository">Form the class ICategoryRepository</param>
+        /// <param name="productRepository">Form the class IProductRepository</param>
         public BrowseController(ICategoryRepository categoryRepository, IProductRepository productRepository)
         {
             _categoryRepository = categoryRepository;
             _productRepository = productRepository;
         }
 
+        /// <summary>
+        /// Returns a View model of the Browse of Category to inject on the Category.scthml
+        /// Showes all the product under a surten category.
+        /// </summary>
+        /// <param name="id">The id of an specific category</param>
+        /// <returns>Returns a viewModel of a category</returns>
         [HttpGet]
         public IActionResult Category(int id)
         {
@@ -37,27 +48,24 @@ namespace ElectroShop.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// This is a method to search for all the products in the database/IProductRepository.
+        /// </summary>
+        /// <param name="searchItemName">The item we search for.</param>
+        /// <returns>Reutrns the searchresult</returns>
         [HttpPost]
-        public IActionResult Search(string searchName)
+        public IActionResult Search(string searchItemName)
         {
+            var products = from p in _productRepository.AllProducts
+                       select p;
 
-            var info = from m in _productRepository.AllProducts
-                       select m;
-
-
-            if (!String.IsNullOrEmpty(searchName))
+            if (!String.IsNullOrEmpty(searchItemName))
             {
 
-                info = info.Where(info => info.Name.Contains(searchName));
+                products = products.Where(info => info.Name.Contains(searchItemName));
             }
 
-            //if (!String.IsNullOrEmpty(searchName))
-            //{
-            //    info = info.Where(info => info..Contains(searchName));
-
-            //}
-
-            return View(info);
+            return View(products);
         }
     }
 }

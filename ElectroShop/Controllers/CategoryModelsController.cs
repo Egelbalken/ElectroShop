@@ -13,18 +13,26 @@ namespace ElectroShop.Controllers
 {
     public class CategoryModelsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _ApplicationDbcontext;
 
-        public CategoryModelsController(ApplicationDbContext context)
+        /// <summary>
+        /// Constructor injection oj 
+        /// </summary>
+        /// <param name="context"></param>
+        public CategoryModelsController(ApplicationDbContext Dbcontext)
         {
-            _context = context;
+            _ApplicationDbcontext = Dbcontext;
         }
 
-        // GET: CategoryModels
+        /// <summary>
+        /// GET: CategoryModels
+        /// Show the Parentcategory registered in the database as a list.
+        /// </summary>
+        /// <returns>Returns a list of categorys to the view from the database.</returns>
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Categories.Include(c => c.ParentCategory);
-            return View(await applicationDbContext.ToListAsync());
+            var applicationCategoryDbContext = _ApplicationDbcontext.Categories.Include(c => c.ParentCategory);
+            return View(await applicationCategoryDbContext.ToListAsync());
         }
 
         // GET: CategoryModels/Details/5
@@ -35,7 +43,7 @@ namespace ElectroShop.Controllers
                 return NotFound();
             }
 
-            var categoryModel = await _context.Categories
+            var categoryModel = await _ApplicationDbcontext.Categories
                 .Include(c => c.ParentCategory)
                 .FirstOrDefaultAsync(m => m.CategoryId == id);
             if (categoryModel == null)
@@ -50,7 +58,7 @@ namespace ElectroShop.Controllers
         public IActionResult Create()
         {
             ViewData["ParentCategoryName"] = new SelectList(
-                _context.Categories, 
+                _ApplicationDbcontext.Categories, 
                 nameof(CategoryModel.CategoryId),
                 nameof(CategoryModel.Name)
             );
@@ -67,11 +75,11 @@ namespace ElectroShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(categoryModel);
-                await _context.SaveChangesAsync();
+                _ApplicationDbcontext.Add(categoryModel);
+                await _ApplicationDbcontext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ParentCategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", categoryModel.ParentCategoryId);
+            ViewData["ParentCategoryId"] = new SelectList(_ApplicationDbcontext.Categories, "CategoryId", "CategoryId", categoryModel.ParentCategoryId);
             return View(categoryModel);
         }
 
@@ -83,12 +91,12 @@ namespace ElectroShop.Controllers
                 return NotFound();
             }
 
-            var categoryModel = await _context.Categories.FindAsync(id);
+            var categoryModel = await _ApplicationDbcontext.Categories.FindAsync(id);
             if (categoryModel == null)
             {
                 return NotFound();
             }
-            ViewData["ParentCategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", categoryModel.ParentCategoryId);
+            ViewData["ParentCategoryId"] = new SelectList(_ApplicationDbcontext.Categories, "CategoryId", "CategoryId", categoryModel.ParentCategoryId);
             return View(categoryModel);
         }
 
@@ -109,8 +117,8 @@ namespace ElectroShop.Controllers
             {
                 try
                 {
-                    _context.Update(categoryModel);
-                    await _context.SaveChangesAsync();
+                    _ApplicationDbcontext.Update(categoryModel);
+                    await _ApplicationDbcontext.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -125,7 +133,7 @@ namespace ElectroShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ParentCategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", categoryModel.ParentCategoryId);
+            ViewData["ParentCategoryId"] = new SelectList(_ApplicationDbcontext.Categories, "CategoryId", "CategoryId", categoryModel.ParentCategoryId);
             return View(categoryModel);
         }
 
@@ -138,7 +146,7 @@ namespace ElectroShop.Controllers
                 return NotFound();
             }
 
-            var categoryModel = await _context.Categories
+            var categoryModel = await _ApplicationDbcontext.Categories
                 .Include(c => c.ParentCategory)
                 .FirstOrDefaultAsync(m => m.CategoryId == id);
             if (categoryModel == null)
@@ -155,15 +163,15 @@ namespace ElectroShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var categoryModel = await _context.Categories.FindAsync(id);
-            _context.Categories.Remove(categoryModel);
-            await _context.SaveChangesAsync();
+            var categoryModel = await _ApplicationDbcontext.Categories.FindAsync(id);
+            _ApplicationDbcontext.Categories.Remove(categoryModel);
+            await _ApplicationDbcontext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoryModelExists(int id)
         {
-            return _context.Categories.Any(e => e.CategoryId == id);
+            return _ApplicationDbcontext.Categories.Any(e => e.CategoryId == id);
         }
     }
 }
