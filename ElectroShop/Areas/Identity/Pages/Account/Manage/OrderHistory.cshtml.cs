@@ -14,19 +14,20 @@ namespace ElectroShop.Areas.Identity.Pages.Account.Manage
     public class OrderHistoryModel : PageModel
     {
         private readonly ApplicationDbContext _applicationDBcontext;
-        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
-
         public List<OrderModel> OrderHistory { get; set; }
 
-        public OrderHistoryModel(ApplicationDbContext context, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        // Constructor injections from ApplicationDBatabase and ApplicationUser
+        public OrderHistoryModel(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _applicationDBcontext = context;
-            _signInManager = signInManager;
             _userManager = userManager;
         }
 
-
+        /// <summary>
+        /// Fetch the data from customer user to a orderhistorys.
+        /// We show the data in model binding on Razor page OrderHistory
+        /// </summary>
         public void OnGet()
         {
             var userId = _userManager.GetUserId(User);
