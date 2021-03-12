@@ -27,7 +27,7 @@
                     }
                     <li><a asp-controller="Order" asp-action="Invoice" asp-route-OrderId="@order.OrderId">Invoice @order.OrderId</a></li>
                 }
-                @if (@order.Receipt == null)
+                else
                 {
                         <li>
                             <h3>You do not have a order history yet!</h3>
