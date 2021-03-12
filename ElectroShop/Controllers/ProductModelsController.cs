@@ -14,20 +14,38 @@ namespace ElectroShop.Controllers
 
     public class ProductModelsController : Controller
     {
+        // Instance of the database
         private readonly ApplicationDbContext _context;
 
+        /// <summary>
+        /// Constructor Injection to the class of the database context
+        /// </summary>
+        /// <param name="context">The context of database</param>
         public ProductModelsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: ProductModels
+        ///////////////////////////////////////////////////////////////////
+        ////////////////////////  Skaffolded /////////////////////////////
+        /////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        /// GET: ProductModels
+        /// Standrad 
+        /// </summary>
+        /// <returns>Returns a list of products</returns>
         public async Task<IActionResult> Index()
         {
             return View(await _context.Products.ToListAsync());
         }
 
-        // GET: ProductModels/Details/5
+        /// <summary>
+        /// GET: ProductModels/Details/5
+        /// Shows a view of the datail of a product
+        /// </summary>
+        /// <param name="id">Product Id of a item</param>
+        /// <returns>Returns a choosen product to look at.</returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,7 +63,11 @@ namespace ElectroShop.Controllers
             return View(productModel);
         }
 
-        // GET: ProductModels/Create
+        /// <summary>
+        /// GET: ProductModels/Create
+        /// Fetching all the products under category from database.
+        /// </summary>
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         { 
             ViewData["Categories"] = new SelectList(
@@ -60,6 +82,12 @@ namespace ElectroShop.Controllers
         // POST: ProductModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// POST: ProductModels/Create
+        /// Creates a new product and adds it to the context and then we readirects to the indexsite.
+        /// </summary>
+        /// <param name="productModel">The productModel which is going to be added</param>
+        /// <returns>Returns the new added productmodel</returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
@@ -75,7 +103,13 @@ namespace ElectroShop.Controllers
             return View(productModel);
         }
 
-        // GET: ProductModels/Edit/5
+        /// <summary>
+        /// GET: ProductModels/Edit/5
+        /// Edit Method to edit a specific item.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Returns the productModel to edit</returns>
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -101,6 +135,13 @@ namespace ElectroShop.Controllers
         // POST: ProductModels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Edit the product model and binds the id to "ProductId,Name,Description,Price,CategoryId,ImageURL" in database.
+        /// Saves the changes to the productModel and returns it.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="productModel"></param>
+        /// <returns>Returns the edited productModel</returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
@@ -134,7 +175,12 @@ namespace ElectroShop.Controllers
             return View(productModel);
         }
 
-        // GET: ProductModels/Delete/5
+        /// <summary>
+        /// GET: ProductModels/Delete/5
+        /// Gets and shows the product you want to delete.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Returns a productModel thats is about to get deleted</returns>
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -153,7 +199,13 @@ namespace ElectroShop.Controllers
             return View(productModel);
         }
 
-        // POST: ProductModels/Delete/5
+        /// <summary>
+        /// POST: ProductModels/Delete/5
+        /// Takes in tje Id of te product that is choosen to be deleted.
+        /// Deletes it from the database and the returns to the index site of productModel
+        /// </summary>
+        /// <param name="id">the Id of the product that is choosen to be deleted</param>
+        /// <returns>Back to index site</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -164,6 +216,11 @@ namespace ElectroShop.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Cheks if the product exits in the database before going to action whit the request.
+        /// </summary>
+        /// <param name="id">id of the product choosen</param>
+        /// <returns>returns the product id if it is in the database</returns>
         private bool ProductModelExists(int id)
         {
             return _context.Products.Any(e => e.ProductId == id);
