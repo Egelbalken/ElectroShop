@@ -17,10 +17,17 @@ namespace ElectroShop.Controllers
     [Authorize(Roles = "Customer")]
     public class OrderController : Controller
     {
+        // Instance of classes to use in ordercontroller.
         private readonly ShoppingCart _shoppingCart;
         private readonly ApplicationDbContext _applicationDbContext;
         private readonly UserManager<ApplicationUser> _userManager;
 
+        /// <summary>
+        /// Constructor Injections
+        /// </summary>
+        /// <param name="shoppingCart">Injection of the chopping cart</param>
+        /// <param name="applicationDbContext">Injection of the applicateion database</param>
+        /// <param name="userManager">Injection of the customer id active</param>
         public OrderController(ShoppingCart shoppingCart,
             ApplicationDbContext applicationDbContext,
             UserManager<ApplicationUser> userManager)
@@ -30,18 +37,31 @@ namespace ElectroShop.Controllers
             _userManager = userManager;
         }
 
+        /// <summary>
+        /// Customer is allaowed to checkout the shoppingcart
+        /// This is a object of items from the shopping cart content.
+        /// </summary>
+        /// <returns>Returns the viewModel of</returns>
         [HttpGet]
         [Authorize(Roles = "Customer")]
         public IActionResult Checkout()
         {
-            var checkoutViewModel = new CheckoutViewModel
+            var ItemsInCart = new CheckoutViewModel
             {
                 ShoppingCartItems = _shoppingCart.GetShoppingCartItems()
             };
 
-            return View(checkoutViewModel);
+            return View(ItemsInCart);
         }
 
+        /// <summary>
+        /// Takes in the model
+        /// When checkout the order whit all the items in cart you need to add some Receipt info
+        /// to shipping the order and save info for Invoice uses.
+        /// In the end after saving the order to the database we clear the cart.
+        /// </summary>
+        /// <param name="checkoutViewModel">The Viewmodel of receipt</param>
+        /// <returns>Returns and redirect a new order and receipt info to Invioce IActionResult</returns>
         [HttpPost]
         [Authorize(Roles = "Customer")]
         public IActionResult Checkout(CheckoutViewModel checkoutViewModel)
@@ -86,16 +106,25 @@ namespace ElectroShop.Controllers
             _applicationDbContext.SaveChanges();
 
             // Call clearCart to clear the shoppingcart.
-            _shoppingCart.ClearCart();
+            // If the Modelstate is valid clear cart.
+            if (ModelState.IsValid)
+            {
+                _shoppingCart.ClearCart();
+            }
 
             return RedirectToAction("Invoice", new { orderId = newOrder.OrderId });
         }
 
-        // Get info from DB and 
+        /// <summary>
+        /// Get info from DB and this method is redirected from the checkot metchod.
+        /// takes in a new orderId from RedirectToAction("Invoice", new { orderId = newOrder.OrderId }) in checkout.
+        /// </summary>
+        /// <param name="orderId">A new order id</param>
+        /// <returns>Returns a Invoice pdf whit info from the new created order and all receipt and shoppingcartcartitems.</returns>
         public IActionResult Invoice(int orderId)
         {
             var pdfCreator = new PdfCreator(_applicationDbContext);
-            string createdPdf = 
+            string createdPdf =
             pdfCreator.CreatePdf(orderId);
 
 
@@ -103,7 +132,7 @@ namespace ElectroShop.Controllers
             _applicationDbContext.Orders.Find(orderId);
 
             order.Invoice = createdPdf;
-            
+
             _applicationDbContext.Orders.Update(order);
             _applicationDbContext.SaveChanges();
             byte[] bytePdf = createdPdf.Select(s => (byte)s).ToArray();

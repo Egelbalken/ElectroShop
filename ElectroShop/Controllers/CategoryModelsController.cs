@@ -99,9 +99,9 @@ namespace ElectroShop.Controllers
 
         /// <summary>
         ///  GET: CategoryModels/Edit/5
-        ///  Shows a standard view of editor action.
+        ///  Shows a standard view of editor action and the current content.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">the id of the current category</param>
         /// <returns>Returns a model of things to Edit. Only allowed by Admin.</returns>
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
@@ -163,7 +163,12 @@ namespace ElectroShop.Controllers
             return View(categoryModel);
         }
 
-        // GET: CategoryModels/Delete/5
+        /// <summary>
+        /// GET: CategoryModels/Delete/5
+        /// Gives the Admin Authorized action to delete a surten category of chooise.
+        /// </summary>
+        /// <param name="id">Deletes the category id </param>
+        /// <returns>Returns the new category model after deleting one item</returns>
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -183,7 +188,12 @@ namespace ElectroShop.Controllers
             return View(categoryModel);
         }
 
-        // POST: CategoryModels/Delete/5
+        /// <summary>
+        /// POST: CategoryModels/Delete/5
+        /// Removes the category from the database and saves the result in database.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
@@ -195,6 +205,11 @@ namespace ElectroShop.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Make a action if the category you are adds exits in the databas.
+        /// </summary>
+        /// <param name="id">Id of the category</param>
+        /// <returns>returns the valu of id if exists.</returns>
         private bool CategoryModelExists(int id)
         {
             return _ApplicationDbcontext.Categories.Any(e => e.CategoryId == id);
