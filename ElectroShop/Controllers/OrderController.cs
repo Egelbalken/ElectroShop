@@ -85,6 +85,9 @@ namespace ElectroShop.Controllers
             _applicationDbContext.Orders.Add(newOrder);
             _applicationDbContext.SaveChanges();
 
+            // Call clearCart to clear the shoppingcart.
+            _shoppingCart.ClearCart();
+
             return RedirectToAction("Invoice", new { orderId = newOrder.OrderId });
         }
 
@@ -109,9 +112,6 @@ namespace ElectroShop.Controllers
 
             ViewData["PDF"] = bytePdf;
 
-            // Call clearCart to clear the shoppingcart.
-            _shoppingCart.ClearCart();
-            
             return View();
         }
     }
