@@ -1,39 +1,39 @@
 ﻿@page
 @model ElectroShop.Areas.Identity.Pages.Account.Manage.OrderHistoryModel
 @{
-}
 
-<div class="jumbotron">
-    <h3>Order History</h3>
-    <ul style="list-style-type: none;">
-        @foreach (var order in Model.OrderHistory)
-        {
-            if (@order.Receipt != null)
+    <div class="jumbotron">
+        <h3>Order History</h3>
+        <ul style="list-style-type: none;">
+            @foreach (var order in Model.OrderHistory)
             {
-                <li class="shadow listseparator"></li>
-                <li>Customer First name: @order.Receipt.ReceiptFirstName</li>
-                <li>Customer Last nameId: @order.Receipt.ReceiptLastName</li>
-                <li>Customer Address: @order.Receipt.ReceiptStreetAddress</li>
-                <li>Customer ZipCode: @order.Receipt.ReceiptZipCode</li>
-                <li>Customer City: @order.Receipt.ReceiptCity</li>
-                <li>Customer Country: @order.Receipt.ReceiptCountry</li>
-                <li>Order details:</li>
-                @foreach (var items in order.OrderDetails)
+                @if (@order.Receipt != null)
                 {
-                    <li></li>
-                    <li>Order id: @items.OrderId</li>
-                    <li>Product id: @items.ProductId</li>
-                    <li>Quantity: @items.Quantity</li>
-                    <li></li>
+                    <li class="shadow listseparator"></li>
+                    <li>Customer First name: @order.Receipt.ReceiptFirstName</li>
+                    <li>Customer Last nameId: @order.Receipt.ReceiptLastName</li>
+                    <li>Customer Address: @order.Receipt.ReceiptStreetAddress</li>
+                    <li>Customer ZipCode: @order.Receipt.ReceiptZipCode</li>
+                    <li>Customer City: @order.Receipt.ReceiptCity</li>
+                    <li>Customer Country: @order.Receipt.ReceiptCountry</li>
+                    <li>Order details:</li>
+                    @foreach (var items in order.OrderDetails)
+                    {
+                        <li></li>
+                        <li>Order id: @items.OrderId</li>
+                        <li>Product id: @items.ProductId</li>
+                        <li>Quantity: @items.Quantity</li>
+                        <li></li>
+                    }
+                    <li><a asp-controller="Order" asp-action="Invoice" asp-route-OrderId="@order.OrderId">Invoice @order.OrderId</a></li>
                 }
-                <li><a asp-controller="Order" asp-action="Invoice" asp-route-OrderId="@order.OrderId">Invoice @order.OrderId</a></li>
+                @if (@order.Receipt == null)
+                {
+                        <li>
+                            <h3>You do not have a order history yet!</h3>
+                        </li>
+                }
             }
-            else
-            {
-                <li>
-                    <h3>You do not have a order history yet!</h3>
-                </li>
-            }
-        }
-    </ul>
-</div>
+        </ul>
+    </div>
+}
