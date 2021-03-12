@@ -35,7 +35,11 @@ namespace ElectroShop.Controllers
             return View(await applicationCategoryDbContext.ToListAsync());
         }
 
-        // GET: CategoryModels/Details/5
+        /// <summary>
+        /// GET: CategoryModels/Details/5
+        /// </summary>
+        /// <param name="id">Category ID of customers chooise.</param>
+        /// <returns>Returns a detail model of the category</returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -54,7 +58,11 @@ namespace ElectroShop.Controllers
             return View(categoryModel);
         }
 
-        // GET: CategoryModels/Create
+        /// <summary>
+        /// GET: CategoryModels/Create
+        /// Creates a standard view of categorys registerd in the database.
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Create()
         {
             ViewData["ParentCategoryName"] = new SelectList(
@@ -68,6 +76,12 @@ namespace ElectroShop.Controllers
         // POST: CategoryModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// The Admin is allowed to create a new category repository
+        /// Added functionality to add some image url and parent category.
+        /// </summary>
+        /// <param name="categoryModel">A new category model</param>
+        /// <returns>A new added cattegory view model to the site</returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
@@ -83,7 +97,13 @@ namespace ElectroShop.Controllers
             return View(categoryModel);
         }
 
-        // GET: CategoryModels/Edit/5
+        /// <summary>
+        ///  GET: CategoryModels/Edit/5
+        ///  Shows a standard view of editor action.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Returns a model of things to Edit. Only allowed by Admin.</returns>
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -103,6 +123,12 @@ namespace ElectroShop.Controllers
         // POST: CategoryModels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Gives the Admin Authorized action to edit a surten category of chooise.
+        /// </summary>
+        /// <param name="id">Binds the id to CategoryId,Name,Description,ParentCategoryId,ImageURL</param>
+        /// <param name="categoryModel">the changed category model view</param>
+        /// <returns>Returns The Edited CategoryViewModel</returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
