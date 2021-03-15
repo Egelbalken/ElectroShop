@@ -13,6 +13,10 @@ namespace ElectroShop.Models
         IEnumerable<ProductModel> OnSaleProduct { get; }
 
         ProductModel GetProduct(int productId);
+
+        IEnumerable<ProductReviewModel> GetProductReviews(int productId);
+
+        IEnumerable<ProductRatingModel> GetProductRatings(int productId);
     }
 }
 
