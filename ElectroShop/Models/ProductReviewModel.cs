@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ElectroShop.Models
 {
+    /// <summary>
+    /// Review of a product by a customer.
+    /// </summary>
     public class ProductReviewModel
     {
         [Key]
@@ -18,8 +21,10 @@ namespace ElectroShop.Models
         public string Review { get; set; }
 
         public int ProductId { get; set; }
+        // Reference to the product beign reviewed.
         public ProductModel Product { get; set; }
 
+        // Reference to the customer reviewing the product.
         public ApplicationUser Customer { get; set; }
     }
 }

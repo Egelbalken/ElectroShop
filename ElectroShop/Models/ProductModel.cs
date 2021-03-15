@@ -38,8 +38,14 @@ namespace ElectroShop.Models
 
         public CategoryModel Category { get; set; }
 
+        /// <summary>
+        /// All reviews of this product by customers.
+        /// </summary>
         public List<ProductReviewModel> ProductReviews { get; set; } = new List<ProductReviewModel>();
 
+        /// <summary>
+        /// All ratings of this product by customers.
+        /// </summary>
         public List<ProductRatingModel> ProductRatings { get; set; } = new List<ProductRatingModel>();
 
         /// <summary>

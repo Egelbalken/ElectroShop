@@ -63,16 +63,22 @@ namespace ElectroShop.Data
                 entity.ToTable("UserTokens");
             });
 
+            // Create a hierarchical relationship between parent categories and child categories using a one to many relationship.
+            // A parent category can have many subcategories, and a subcategory can have one parent category;
             builder.Entity<CategoryModel>()
                 .HasMany(parent => parent.SubCategories)
                 .WithOne(child => child.ParentCategory)
                 .HasForeignKey(child => child.ParentCategoryId);
 
+            // Create a one to many relationship between a product and its ProductReviews.
+            // A product can have many reviews, but a review can only 'review' one product.
             builder.Entity<ProductReviewModel>()
                 .HasOne(review => review.Product)
                 .WithMany(product => product.ProductReviews)
                 .HasForeignKey(review => review.ProductId);
 
+            // Create a one to many relationship between a product and its ProductRatings.
+            // A product can have many ratings, but a rating can only 'rate' one product.
             builder.Entity<ProductRatingModel>()
                 .HasOne(rating => rating.Product)
                 .WithMany(product => product.ProductRatings)
