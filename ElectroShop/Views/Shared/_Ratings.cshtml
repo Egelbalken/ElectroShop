@@ -4,8 +4,9 @@
 @{
 }
 
+
 <form class="form-check-inline text" oninput="rate.value=parseInt(Array.from(document.querySelectorAll(`input[name='rating']`)).filter(e=>e.checked)[0].value)">
-  <div class="rate">
+    <div class="rate">
     <input type="radio" id="5" value="5" name="rating" />
     <label for="5"></label>
     <input type="radio" id="4" value="4" name="rating" />
@@ -16,6 +17,6 @@
     <label for="2"></label>
     <input type="radio" id="1" value="1" name="rating" />
     <label for="1"></label>
-  </div>
-  <output name="rate"></output>
-</form>
+    </div>
+    <output name="rate"></output>
+    </form>

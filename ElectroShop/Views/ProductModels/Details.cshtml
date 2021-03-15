@@ -6,30 +6,33 @@
 
 
 <div class="jumbotron">
-<h4> Product Details</h4>
+    <h4> Product Details</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Price)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
+        </dd>
+            <partial name="_Ratings"></partial>
+        <dd>
     </dl>
 </div>
 <div>
-<a class="shadow btn btn-secondary mx-1" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@Model.ProductId">Add to cart</a>
+    <a class="shadow btn btn-secondary mx-1" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@Model.ProductId">Add to cart</a>
     <a class="shadow btn btn-primary mx-1" asp-action="Index">Back to List</a>
 </div>
