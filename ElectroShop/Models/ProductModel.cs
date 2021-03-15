@@ -58,12 +58,14 @@ namespace ElectroShop.Models
             {
                 if (ProductRatings.Count > 0)
                 {
+                    // Calculate the sum of all ratings divided by the count of all ratings.
                     return ProductRatings
                         .Select(r => r.Rating)
                         .Sum() / ProductRatings.Count;
                 }
                 else
                 {
+                    // Return 0 if there's no rating of the product.
                     return 0;
                 }
             }
