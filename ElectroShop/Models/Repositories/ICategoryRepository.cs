@@ -10,6 +10,7 @@ namespace ElectroShop.Models
     public interface ICategoryRepository
     {
         IEnumerable<CategoryModel> AllCategories { get; }
+        IEnumerable<CategoryModel> GetAllTopLevelCategories();
         IEnumerable<ProductModel> GetAllProducts(int categoryId);
         CategoryModel GetCategory(int id);
     }
