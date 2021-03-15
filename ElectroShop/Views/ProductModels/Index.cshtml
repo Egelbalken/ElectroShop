@@ -29,9 +29,13 @@
                     @Html.DisplayNameFor(model => model.Description)
                 </th>
                 <th>
+                     <partial>Ratings</partial>
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Price)
                 </th>
-                <th></th>
+                <th>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -46,6 +50,10 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Description)
+                           
+                    </td>
+                    <td>
+                         <partial name="_Ratings"></partial>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Price)

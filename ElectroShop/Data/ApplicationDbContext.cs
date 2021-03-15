@@ -10,6 +10,7 @@ namespace ElectroShop.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        // DbSets to add to database.
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<OrderModel> Orders { get; set; }
         public DbSet<ProductModel> Products { get; set; }
@@ -17,11 +18,16 @@ namespace ElectroShop.Data
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         public DbSet<Receipt> Receipts { get; set; }
 
+        // Constructor.
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
-
+        
+        /// <summary>
+        /// Creates the Roles for Identity by start.
+        /// </summary>
+        /// <param name="builder">Creates roles from the databuilder in program class</param>
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -62,6 +68,7 @@ namespace ElectroShop.Data
 
         }
 
+        // DbSets to add to database.
         public DbSet<ElectroShop.Models.OrderDetailModel> OrderDetailModel { get; set; }
     }
 }

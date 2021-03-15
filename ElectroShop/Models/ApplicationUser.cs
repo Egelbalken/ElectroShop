@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ElectroShop.Models
 {
    /// <summary>
-   /// 
+   /// Sets some User properys to the IdentityUser setup.
    /// </summary>
     public class ApplicationUser : IdentityUser
     {

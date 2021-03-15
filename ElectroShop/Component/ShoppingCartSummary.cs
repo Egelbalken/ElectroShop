@@ -21,7 +21,10 @@ namespace ElectroShop.Component
             _shoppingCart = shoppingCart;
         }
 
-        // To show item amount we make a method like this
+        /// <summary>
+        /// To show item amount we make a method like this
+        /// </summary>
+        /// <returns>returns a view of the items in cart</returns>
         public IViewComponentResult Invoke()
         {
             // Get the shoppingCartItems
