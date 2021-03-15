@@ -14,6 +14,8 @@ namespace ElectroShop.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<OrderModel> Orders { get; set; }
         public DbSet<ProductModel> Products { get; set; }
+        public DbSet<ProductReviewModel> ProductReviews { get; set; }
+        public DbSet<ProductRatingModel> ProductRatings { get; set; }
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         public DbSet<Receipt> Receipts { get; set; }
@@ -65,6 +67,16 @@ namespace ElectroShop.Data
                 .HasMany(parent => parent.SubCategories)
                 .WithOne(child => child.ParentCategory)
                 .HasForeignKey(child => child.ParentCategoryId);
+
+            builder.Entity<ProductReviewModel>()
+                .HasOne(review => review.Product)
+                .WithMany(product => product.ProductReviews)
+                .HasForeignKey(review => review.ProductId);
+
+            builder.Entity<ProductRatingModel>()
+                .HasOne(rating => rating.Product)
+                .WithMany(product => product.ProductRatings)
+                .HasForeignKey(rating => rating.ProductId);
 
         }
 
