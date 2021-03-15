@@ -69,7 +69,7 @@ namespace ElectroShop.Models
             // Include all ratings of the product, and the customer rating the product.
             ProductModel product = applicationDbContext.Products
                 .Include(product => product.ProductRatings)
-                    .ThenInclude(review => review.Customer)
+                    .ThenInclude(rating => rating.Customer)
                 .FirstOrDefault(product => product.ProductId == productId);
 
             // If the given product was not found, throw an exception.
