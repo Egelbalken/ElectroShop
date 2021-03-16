@@ -39,6 +39,21 @@ namespace ElectroShop.Models
         }
 
         /// <summary>
+        /// Get all top-level categories from the category hierarchy.
+        /// </summary>
+        /// <returns>An IEnumerable of CategoryModel</returns>
+        public IEnumerable<CategoryModel> GetAllTopLevelCategories()
+        {
+            // Find all top-level categories by filtering out categories where the parent caregory is set.
+            // Include their subcategories as well as their products.
+            return applicationDbContext.Categories
+                .Include(category => category.Products)
+                .Include(category => category.SubCategories)
+                .Include(category => category.ParentCategory)
+                .Where(category => category.ParentCategory == null);
+        }
+
+        /// <summary>
         /// Recursively retrieves all products from the selected category, and all its descendant subcategories by
         /// doing a tree traversal.
         /// </summary>

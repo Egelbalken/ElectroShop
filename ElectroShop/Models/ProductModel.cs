@@ -22,6 +22,7 @@ namespace ElectroShop.Models
         public string Name { get; set; }
 
         public string Description { get; set; }
+
         [Column(TypeName = "Money")]
         public decimal Price { get; set; }
 
@@ -36,5 +37,38 @@ namespace ElectroShop.Models
         public double OnSalePrice { get; set; }
 
         public CategoryModel Category { get; set; }
+
+        /// <summary>
+        /// All reviews of this product by customers.
+        /// </summary>
+        public List<ProductReviewModel> ProductReviews { get; set; } = new List<ProductReviewModel>();
+
+        /// <summary>
+        /// All ratings of this product by customers.
+        /// </summary>
+        public List<ProductRatingModel> ProductRatings { get; set; } = new List<ProductRatingModel>();
+
+        /// <summary>
+        /// The average rating of this product. 
+        /// Has a value between 1 and 5, 0 if there's no rating.
+        /// </summary>
+        public double AverageProductRating
+        {
+            get
+            {
+                if (ProductRatings.Count > 0)
+                {
+                    // Calculate the sum of all ratings divided by the count of all ratings.
+                    return ProductRatings
+                        .Select(r => r.Rating)
+                        .Sum() / ProductRatings.Count;
+                }
+                else
+                {
+                    // Return 0 if there's no rating of the product.
+                    return 0;
+                }
+            }
+        }
     }
 }
