@@ -45,9 +45,9 @@ Dubbelkolla hemsidan, se över och ändra delar så som dollar tecken istället 
 
 Inför presentation, Skapa diagram & Bilder, Visa processen vid skapandet av projektetsdelar. (POWERpoint & Drawio)
 
-**V3:** 
-- Måndag 
-  - Planera och lägg till betyg och bedömning för produkter: Låt en användare bedömmna och/eller betygsätta produkt endast om användaren tidigare köpt produkten.
+V3: Måndag, Planera och lägg till betyg och bedömning för produkter: Låt en användare bedömmna och/eller betygsätta produkt endast om användaren tidigare köpt produkten.
+
+V3: Tisdag, undersöker och testar React JS för projektets front end. Se vidare hur vi omvandlar projektet till single page application med React. 
 
 V4:
 
