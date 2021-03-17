@@ -18,7 +18,9 @@ namespace ElectroShop.Models
         /// <summary>
         /// Get all ProductModels from the database context.
         /// </summary>
-        public IEnumerable<ProductModel> AllProducts => applicationDbContext.Products.ToList();
+        public IEnumerable<ProductModel> AllProducts => applicationDbContext.Products
+            .Include(product => product.ProductRatings)
+            .ToList();
 
         public IEnumerable<ProductModel> OnSaleProduct => throw new NotImplementedException();
 
@@ -31,6 +33,7 @@ namespace ElectroShop.Models
         {
             return applicationDbContext.Products
                 .Include(product => product.Category)
+                .Include(product => product.ProductRatings)
                 .FirstOrDefault(product => product.ProductId == id);
         }
 
