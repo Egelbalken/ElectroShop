@@ -146,5 +146,43 @@ namespace ElectroShop.Data
                 await context.SaveChangesAsync();
             }
         }
+
+        public static async Task SeedProductReviewsAsync(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        {
+            if (context.ProductReviews.Count() == 0)
+            {
+                var customer = await userManager.FindByEmailAsync("CustomerBardia@gmail.com");
+                var productReviews = context.Products
+                    .Select(product => new ProductReviewModel
+                    {
+                        Title = $"I recommend {product.Name}!",
+                        Review = $"{product.Name} worked very well. I followed the instructions step by step and it turned out great.",
+                        Customer = customer,
+                        ProductId = product.ProductId
+                    });
+
+                await context.ProductReviews.AddRangeAsync(productReviews);
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public static async Task SeedProductRatingsAsync(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        {
+            if (context.ProductRatings.Count() == 0)
+            {
+                var random = new Random();
+                var customer = await userManager.FindByEmailAsync("CustomerBardia@gmail.com");
+                var productRatings = context.Products
+                    .Select(product => new ProductRatingModel
+                    {
+                        Rating = random.Next(1, 6),
+                        Customer = customer,
+                        ProductId = product.ProductId
+                    });
+
+                await context.ProductRatings.AddRangeAsync(productRatings);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }
