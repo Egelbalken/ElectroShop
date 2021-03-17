@@ -1,4 +1,4 @@
-﻿
+﻿@model IProductRepository
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -6,10 +6,10 @@
     Layout = null;
 }
 
-<div id="rated">
+@*<div id="rated">
   <div style="float:left">
     <form id="Form1" method="post" action="">
-      <input class="star {split:4}" type="radio" value="1" name="rating" <%= Utils.Check(0,0.25,Model.AverageRating) %>/>
+      <input class="star {split:4}" type="radio" value="1" name="rating" <%= Utils.Check(0,0.25,Model.AverageRating) %> />
       <input class="star {split:4}" type="radio" value="2" name="rating" <%= Utils.Check(0.25,0.5,Model.AverageRating) %>/>
       <input class="star {split:4}" type="radio" value="3" name="rating" <%= Utils.Check(0.5,0.75,Model.AverageRating) %>/>
       <input class="star {split:4}" type="radio" value="4" name="rating" <%= Utils.Check(0.75,1,Model.AverageRating) %>/>
@@ -33,7 +33,7 @@
     </div>
     <p id="currentlyrated" style="float:left;padding-left:20px;">
     <%= Model.AverageRating > 0 ? "Currently rated " + Model.AverageRating.ToString("f") + " by " + Model.TotalRaters + " people" 
-       : "<span style=\"color:red\">Not yet rated.  Be the first to rate this article!</span>"%>
+       : "<span style="color:red;">Not yet rated.  Be the first to rate this article!</span>"%>
     </p>
   </div>
   <div style="clear:both"></div>
@@ -53,4 +53,4 @@
       Rate Now!
     </p>
   </div>
-  <div style="clear:both"></div>
+  <div style="clear:both"></div>*@

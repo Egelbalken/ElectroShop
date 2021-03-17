@@ -7,7 +7,6 @@
 // We are using javaScript to rout and display the data.
 
 function StarRatings(id) {
-
     $.get("RatingsAndReviews/StarRatings", (rout) => {
 
         let routing = rout;
@@ -48,6 +47,7 @@ function StarRatings(id) {
 //                    }
 //                });
 //            }
+
 //        });
 //    });
 //}
