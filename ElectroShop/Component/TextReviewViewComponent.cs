@@ -16,9 +16,10 @@ namespace ElectroShop.Component
             _productReview = productReview;
         }
 
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View();
+            var review = _productReview.ToString();
+            return View(review);
         }
     }
 }

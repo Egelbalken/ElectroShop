@@ -16,11 +16,11 @@ namespace ElectroShop.Component
             _productRating = productRating;
         }
 
-        public IViewComponentResult InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
             var stars = _productRating;
 
-            return View();
+            return View(stars);
         }
 
     }
