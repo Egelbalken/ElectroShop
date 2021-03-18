@@ -46,6 +46,7 @@
         </form>
 
         <hr />
+        @* The description list of all the reviews. *@
         <dl id="reviews"></dl>
     </div>
 </div>
@@ -78,14 +79,20 @@
                     type: "GET",
                     url: `/api/Product/GetReviews/${productId}`,
                     dataType: "json",
-                    success: appendToReviewList
+                    success: appendToReviewList,
+                    error: (data) => { console.log("An error occured while requesting the reviews of the product."); }
                 });
 
             $("#buttonSubmit").click(event => {
+                // When submitting the form, prevent .NET default action posting.
                 event.preventDefault();
 
+                // Get the values from the form element.
                 let reviewForm = $("#review-form")[0];
+                // Translate the form values into a key/value pair.
                 let reviewData = new FormData(reviewForm);
+
+                // Append the product ID with the key 'productId'
                 reviewData.append("productId", productId);
 
                 // TODO: If successful refresh and append the newly created review to the page
@@ -93,6 +100,7 @@
                     ({
                         type: "POST",
                         url: `/api/Product/PostFullReview`,
+                        // Convert the review data to a JSON object.
                         data: JSON.stringify(Object.fromEntries(reviewData)),
                         contentType: "application/json",
                         success: (data) => { console.log(`Sucessfully posted the data: ${data}`) },
