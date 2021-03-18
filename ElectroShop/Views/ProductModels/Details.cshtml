@@ -27,12 +27,79 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
-        <dd>
-            <partial name="_ReviewRatings"></partial>
-        </dd>
     </dl>
+
+    <div class="container">
+        <form id="review-form" name="rate" method="post">
+            <div class="rate form-group" name="rate">
+                <input type="radio" id="star5" name="rate" value="5" /><label for="star5" title="text">5 stars</label>
+                <input type="radio" id="star4" name="rate" value="4" /><label for="star4" title="text">4 stars</label>
+                <input type="radio" id="star3" name="rate" value="3" /><label for="star3" title="text">3 stars</label>
+                <input type="radio" id="star2" name="rate" value="2" /><label for="star2" title="text">2 stars</label>
+                <input type="radio" id="star1" name="rate" value="1" /><label for="star1" title="text">1 star</label>
+            </div>
+            <div name="review" form-group form-control">
+                <input type="text" class="form-control" placeholder="tilte" name="title"/>
+                <textarea id="text" class="form-control" placeholder="review" rows="3" name="review"></textarea>
+            </div>
+            <button id="buttonSubmit" type="submit" class="shadow btn btn-primary" name="rate">Review Submit</button>
+        </form>
+
+        <hr />
+        <dl id="reviews"></dl>
+    </div>
 </div>
 <div>
     <a class="shadow btn btn-secondary mx-1" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@Model.ProductId">Add to cart</a>
     <a class="shadow btn btn-primary mx-1" asp-action="Index">Back to List</a>
 </div>
+
+@section Scripts
+{ 
+    <script>
+        $(function () {
+            let productId = @(Model.ProductId);
+
+            // Appends all reviews of the products to the review description list.
+            const appendToReviewList = function (reviews) {
+                // Iterate through each review, and retrieve all the individual review.
+                $.each(reviews, (i, review) => {
+                    // Append the title as well as the data to the description list.
+                    $("#reviews")
+                        .append(`<dt>${review.title}</dt>`)
+                        .append(`<dd>${review.review}</dd>`);
+                });
+            }
+
+            // Call our Product Api controller and get all reviews using Ajax.
+            // If the GET request was successful, append all review to the review description list.
+            $.ajax
+                ({
+                    type: "GET",
+                    url: `/api/Product/GetReviews/${productId}`,
+                    dataType: "json",
+                    success: appendToReviewList
+                });
+
+            $("#buttonSubmit").click(event => {
+                event.preventDefault();
+
+                let reviewForm = $("#review-form")[0];
+                let reviewData = new FormData(reviewForm);
+                reviewData.append("productId", productId);
+
+                // TODO: If successful refresh and append the newly created review to the page
+                $.ajax
+                    ({
+                        type: "POST",
+                        url: `/api/Product/PostFullReview`,
+                        data: JSON.stringify(Object.fromEntries(reviewData)),
+                        contentType: "application/json",
+                        success: (data) => { console.log(`Sucessfully posted the data: ${data}`) },
+                        error: (data) => { console.log(`An error occured while posting the data: ${data}`) }
+                    });
+            });
+
+        });
+    </script>
+}
