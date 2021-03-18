@@ -123,7 +123,7 @@ namespace ElectroShop.Api
 
             await _applicationDbContext.SaveChangesAsync();
 
-            return Ok();
+            return Ok(data);
         }
     }
 }

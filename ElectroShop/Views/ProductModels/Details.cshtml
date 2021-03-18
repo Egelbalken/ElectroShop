@@ -61,14 +61,19 @@
         $(function () {
             let productId = @(Model.ProductId);
 
+            // Append the title as well as the review to the description list.
+            const addReviewItem = function(reviewData) {
+                $("#reviews")
+                    .append(`<dt>${reviewData.title}</dt>`)
+                    .append(`<dd>${reviewData.review}</dd>`);
+            }
+
             // Appends all reviews of the products to the review description list.
             const appendToReviewList = function (reviews) {
                 // Iterate through each review, and retrieve all the individual review.
                 $.each(reviews, (i, review) => {
-                    // Append the title as well as the data to the description list.
-                    $("#reviews")
-                        .append(`<dt>${review.title}</dt>`)
-                        .append(`<dd>${review.review}</dd>`);
+                    // Add the review data to the review description list.
+                    addReviewItem(review);
                 });
             }
 
@@ -89,13 +94,12 @@
 
                 // Get the values from the form element.
                 let reviewForm = $("#review-form")[0];
-                // Translate the form values into a key/value pair.
+                // Translate the form values into key/value pairs.
                 let reviewData = new FormData(reviewForm);
 
                 // Append the product ID with the key 'productId'
                 reviewData.append("productId", productId);
 
-                // TODO: If successful refresh and append the newly created review to the page
                 $.ajax
                     ({
                         type: "POST",
@@ -103,8 +107,14 @@
                         // Convert the review data to a JSON object.
                         data: JSON.stringify(Object.fromEntries(reviewData)),
                         contentType: "application/json",
-                        success: (data) => { console.log(`Sucessfully posted the data: ${data}`) },
-                        error: (data) => { console.log(`An error occured while posting the data: ${data}`) }
+                        success: (data) => {
+                            console.log(`Sucessfully posted the data.`);
+                            // Add the review data returned from the API.
+                            addReviewItem(data);
+                        },
+                        error: (data) => {
+                            alert(`An error occured while posting the data.`)
+                        }
                     });
             });
 
