@@ -67,27 +67,26 @@ namespace ElectroShop.Api
         /// <param name="productId">The product ID.</param>
         /// <returns>An IEnumerable of all reviews, ratings and user details.</returns>
         [HttpGet]
-        // TODO: UserManager
-        public IEnumerable<object> GetCompleteReviews(int productId)
+        public IEnumerable<RateReviewViewModel> GetFullReviews(int productId)
         {
             // Retrieve all product reviews and product ratings from the repository.
             var productReviews = _productRepository.GetProductReviews(productId);
             var productRatings = _productRepository.GetProductRatings(productId);
 
             // JOIN reviews and ratings on the customer ID,
-            // create an anonymous object to be used as a JSON object for the view.
-            var reviews = productReviews.Join(productRatings,
+            // create an IEnumerable of RateReviewViewModel to be used as a JSON object for the view.
+            var completeReviews = productReviews.Join(productRatings,
                 review => review.Customer.Id,
                 rating => rating.Customer.Id,
-                (review, rating) => new
+                (review, rating) => new RateReviewViewModel
                 {
-                    UserName = review.Customer.UserName,
-                    ReviewTitle = review.Title,
-                    ReviewContent = review.Review,
-                    Rating = rating.Rating,
+                    //UserName = review.Customer.UserName,
+                    Title = review.Title,
+                    Review = review.Review,
+                    Rate = rating.Rating,
                 });
 
-            return reviews;
+            return completeReviews;
         }
 
         [HttpPost]
