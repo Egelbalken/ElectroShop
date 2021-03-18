@@ -1,6 +1,7 @@
 ﻿using ElectroShop.Data;
 using ElectroShop.Models;
 using ElectroShop.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +21,9 @@ namespace ElectroShop.Api
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _applicationDbContext;
 
-        public ProductController(IProductRepository productRepository, UserManager<ApplicationUser> userManager, ApplicationDbContext context)
+        public ProductController(IProductRepository productRepository, 
+            UserManager<ApplicationUser> userManager, 
+            ApplicationDbContext context)
         {
             _productRepository = productRepository;
             _userManager = userManager;
@@ -56,6 +59,7 @@ namespace ElectroShop.Api
         /// <param name="productId">The ID of the product</param>
         /// <returns>An IEnumerable of ProductReviewModel</returns>
         [HttpGet]
+        // localhost:5000/api/Product/GetReviews/1
         public IEnumerable<ProductReviewModel> GetReviews(int productId)
         {
             return _productRepository.GetProductReviews(productId);
@@ -90,28 +94,36 @@ namespace ElectroShop.Api
         }
 
         [HttpPost]
-        public JsonResult PostFullReview([FromBody] RateReviewViewModel data)
+        public async Task<IActionResult> PostFullReview([FromBody] RateReviewViewModel data)
         {
             if (!ModelState.IsValid)
-                return new JsonResult(new { status = "400" });
+                return BadRequest(data);
 
-            _applicationDbContext.ProductReviews
-                .Add(new ProductReviewModel
+            if (!User.IsInRole("Customer"))
+                return Unauthorized(data);
+
+            ApplicationUser customer = await _userManager.GetUserAsync(User);
+
+            await _applicationDbContext.ProductReviews
+                .AddAsync(new ProductReviewModel
                 {
                     Title = data.Title,
                     Review = data.Review,
                     ProductId = data.ProductId,
+                    Customer = customer,
                 });
 
-            _applicationDbContext.ProductRatings
-                .Add(new ProductRatingModel
+            await _applicationDbContext.ProductRatings
+                .AddAsync(new ProductRatingModel
                 {
                     Rating = data.Rate,
-                    ProductId = data.ProductId
-                });
+                    ProductId = data.ProductId,
+                    Customer = customer,
+                }); 
 
-            _applicationDbContext.SaveChanges();
-            return new JsonResult(new { Status = "Success" });
+            await _applicationDbContext.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }
