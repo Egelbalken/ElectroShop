@@ -63,9 +63,17 @@
 
             // Append the title as well as the review to the description list.
             const addReviewItem = function(reviewData) {
+                var star = '';
+                var i; 
+
+                for (i = 0; i < reviewData.rate; i++){
+                    star = '★ ' + star;
+                }
+
                 $("#reviews").append(`
                 <div class="card" style="400px; margin:auto;">
                     <div class="card-body">
+                        <h6 style="color:#FF7F11;">${star}</h6>
                         <h5 class="card-title">${reviewData.title}</h5>
                         <p class="card-text">${reviewData.review}</p>
                     </div>
