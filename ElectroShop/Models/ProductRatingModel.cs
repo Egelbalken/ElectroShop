@@ -13,12 +13,14 @@ namespace ElectroShop.Models
     public class ProductRatingModel
     {
         [Key]
+        [Display(Name = "Ratings")]
         public int ProductRatingId { get; set; }
 
         // The rating of the product. Has a range of 1 up to 5.
         // Store as TINYINT (1 byte) in the database to save space.
         [Range(1, 5)]
         [Column(TypeName = "TINYINT")]
+        [Display(Name = "Ratings")]
         public int Rating { get; set; }
         
         public int ProductId { get; set; }

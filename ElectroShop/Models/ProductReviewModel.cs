@@ -28,6 +28,7 @@ namespace ElectroShop.Models
         public ApplicationUser Customer { get; set; }
 
         // Reference to the rating of the product
+        [Display(Name = "Ratings")]
         public ProductRatingModel Rating { get; set; }
     }
 }
