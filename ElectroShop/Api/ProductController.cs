@@ -50,6 +50,7 @@ namespace ElectroShop.Api
         [HttpGet]
         public IEnumerable<ProductRatingModel> GetRatings(int productId)
         {
+            // TODO: Remove customer personal details
             return _productRepository.GetProductRatings(productId);
         }
 
@@ -60,9 +61,16 @@ namespace ElectroShop.Api
         /// <returns>An IEnumerable of ProductReviewModel</returns>
         [HttpGet]
         // localhost:5000/api/Product/GetReviews/1
-        public IEnumerable<ProductReviewModel> GetReviews(int productId)
+        public IEnumerable<RateReviewViewModel> GetReviews(int productId)
         {
-            return _productRepository.GetProductReviews(productId);
+            return _productRepository.GetProductReviews(productId)
+                .Select(review => new RateReviewViewModel
+                {
+                    Title = review.Title,
+                    Review = review.Review,
+                    Rate = review.Rating.Rating,
+                    ProductId = review.ProductId
+                });
         }
 
         /// <summary>
@@ -94,13 +102,13 @@ namespace ElectroShop.Api
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostFullReview([FromBody] RateReviewViewModel data)
+        public async Task<IActionResult> PostReview([FromBody] RateReviewViewModel data)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(data);
-
             if (!User.IsInRole("Customer"))
                 return Unauthorized(data);
+
+            if (!ModelState.IsValid)
+                return BadRequest(data);
 
             ApplicationUser customer = await _userManager.GetUserAsync(User);
 
@@ -110,16 +118,14 @@ namespace ElectroShop.Api
                     Title = data.Title,
                     Review = data.Review,
                     ProductId = data.ProductId,
+                    Rating = new ProductRatingModel 
+                    { 
+                        Rating = data.Rate, 
+                        Customer = customer, 
+                        ProductId = data.ProductId 
+                    },
                     Customer = customer,
                 });
-
-            await _applicationDbContext.ProductRatings
-                .AddAsync(new ProductRatingModel
-                {
-                    Rating = data.Rate,
-                    ProductId = data.ProductId,
-                    Customer = customer,
-                }); 
 
             await _applicationDbContext.SaveChangesAsync();
 

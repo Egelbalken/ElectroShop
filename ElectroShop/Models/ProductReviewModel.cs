@@ -26,5 +26,8 @@ namespace ElectroShop.Models
 
         // Reference to the customer reviewing the product.
         public ApplicationUser Customer { get; set; }
+
+        // Reference to the rating of the product
+        public ProductRatingModel Rating { get; set; }
     }
 }

@@ -158,7 +158,13 @@ namespace ElectroShop.Data
                         Title = $"I recommend {product.Name}!",
                         Review = $"{product.Name} worked very well. I followed the instructions step by step and it turned out great.",
                         Customer = customer,
-                        ProductId = product.ProductId
+                        ProductId = product.ProductId,
+                        Rating = new ProductRatingModel 
+                        { 
+                            Rating = 5, 
+                            Customer = customer, 
+                            Product = product 
+                        }
                     });
 
                 await context.ProductReviews.AddRangeAsync(productReviews);

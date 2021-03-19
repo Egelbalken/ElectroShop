@@ -47,7 +47,7 @@
 
         <hr />
         @* The description list of all the reviews. *@
-        <dl id="reviews"></dl>
+        <div id="reviews"></div>
     </div>
 </div>
 <div>
@@ -63,9 +63,15 @@
 
             // Append the title as well as the review to the description list.
             const addReviewItem = function(reviewData) {
-                $("#reviews")
-                    .append(`<dt>${reviewData.title}</dt>`)
-                    .append(`<dd>${reviewData.review}</dd>`);
+                $("#reviews").append(`
+                <div class="card" style="400px; margin:auto;">
+                    <div class="card-body">
+                        <h5 class="card-title">${reviewData.title}</h5>
+                        <p class="card-text">${reviewData.review}</p>
+                    </div>
+                </div>`);
+                    //.append(`<dt>(rating: ${reviewData.rate}) ${reviewData.title}</dt>`)
+                    //.append(`<dd>${reviewData.review}</dd>`);
             }
 
             // Appends all reviews of the products to the review description list.
@@ -103,13 +109,13 @@
                 $.ajax
                     ({
                         type: "POST",
-                        url: `/api/Product/PostFullReview`,
+                        url: `/api/Product/PostReview`,
                         // Convert the review data to a JSON object.
                         data: JSON.stringify(Object.fromEntries(reviewData)),
                         contentType: "application/json",
                         success: (data) => {
                             console.log(`Sucessfully posted the data.`);
-                            // Add the review data returned from the API.
+                            // If successful, add the review data returned from the API.
                             addReviewItem(data);
                         },
                         error: (data) => {

@@ -46,8 +46,11 @@ namespace ElectroShop.Models
         public IEnumerable<ProductReviewModel> GetProductReviews(int productId)
         {
             // Find the product with the given product ID.
-            // Include all reviews of the product, and the customer reviewing the product.
+            // Include all reviews of the product and their ratings,
+            // as well as the customer reviewing the product.
             ProductModel product = applicationDbContext.Products
+                .Include(product => product.ProductReviews)
+                    .ThenInclude(review => review.Rating)
                 .Include(product => product.ProductReviews)
                     .ThenInclude(review => review.Customer)
                 .FirstOrDefault(product => product.ProductId == productId);
