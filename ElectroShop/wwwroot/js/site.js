@@ -7,8 +7,19 @@
 // We are using javaScript to rout and display the data.
 
 
-let starInput = 4;
+//let starInput = 4;
 
-$('#star-rate').ready(function () {
-    $('#star' + starInput).prop('checked', true);
+//$('#star-rate').ready(function () {
+//    let starInput = $('.rate > .average-rate').val();
+//    let productId = $('.rate > .product-id').val();
+
+//    console.log("Product ID:", productId);
+//    console.log("Average Rating:", starInput);
+
+//    $('#star' + starInput).prop('checked', true);
+//});
+
+$('.rate').each((i, rate) => {
+    let startInput = $(rate).find(".average-rate").val();
+    $(rate).find('#star' + startInput).prop("checked", true);
 });
