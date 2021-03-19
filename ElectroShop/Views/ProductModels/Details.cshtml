@@ -70,8 +70,6 @@
                         <p class="card-text">${reviewData.review}</p>
                     </div>
                 </div>`);
-                    //.append(`<dt>(rating: ${reviewData.rate}) ${reviewData.title}</dt>`)
-                    //.append(`<dd>${reviewData.review}</dd>`);
             }
 
             // Appends all reviews of the products to the review description list.
@@ -113,13 +111,20 @@
                         // Convert the review data to a JSON object.
                         data: JSON.stringify(Object.fromEntries(reviewData)),
                         contentType: "application/json",
+                        // If successful, add the review data returned from the API.
                         success: (data) => {
                             console.log(`Sucessfully posted the data.`);
-                            // If successful, add the review data returned from the API.
                             addReviewItem(data);
                         },
-                        error: (data) => {
-                            alert(`An error occured while posting the data.`)
+                        statusCode: {
+                            // HTTP status code 400 bad request: the form is most likely not valid.
+                            400: () => {
+                                alert(`Please check if the form is complete.`);
+                            },
+                            // HTTP status code 401 unauthorized: the user either not logged in or not authorized.
+                            401: () => {
+                                alert(`Please log in to post a review.`);
+                            },
                         }
                     });
             });
