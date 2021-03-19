@@ -34,6 +34,7 @@ nav {
 #fourofour {
     width: 150px;
     text-align: center;
+    transition: .5s;
 }
 
 .table, th, td {
@@ -41,6 +42,7 @@ nav {
     box-shadow: -1px 1px 0px 0px #262626;
     font-weight: bold;
     font-size: 12px;
+    transition: .5s;
 }
 
 thead {
@@ -101,6 +103,10 @@ a {
 .listseparator {
     border: 1px solid black;
     width: 200px;
+}
+
+.nav-link {
+    transition: .5s;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -233,6 +239,7 @@ body {
 #search {
     text-align: center;
     padding: 10px;
+    transition: .5s;
 }
 
 #covid {
