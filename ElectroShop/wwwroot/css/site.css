@@ -1,6 +1,9 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+
+
+
 /* Modify brand and text color of the bootsrap class*/
 .navbar-light {
     background: rgb(172,191,164) !important;
@@ -10,9 +13,11 @@ for details on configuring this project to bundle and minify static web assets. 
     font-size: 16px !important;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
 }
+
 a.navbar-brand {
     white-space: normal;
     word-break: break-all;
+    transition: .5s;
 }
 
 /* Helps the bar to be*/
@@ -21,13 +26,12 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    height: 130px;
     padding: 30px 10px;
     box-sizing: border-box;
     transition: .5s;
 }
 
-#fourofour{
+#fourofour {
     width: 150px;
     text-align: center;
 }
@@ -52,16 +56,16 @@ tbody {
 tfoot {
     color: #262626;
     box-shadow: 2px 2px 5px #262626;
-    color: #FF1B1C; 
+    color: #FF1B1C;
     font-weight: bolder;
 }
 
-#quantity{
-    width:50px;
+#quantity {
+    width: 50px;
     height: 38px;
     border-radius: 5px;
     padding: 10px;
-    margin:auto;
+    margin: auto;
 }
 
 #quantityButton {
@@ -80,29 +84,30 @@ tfoot {
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #0366d6;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 .pdf {
-    width:100%;
-    height:1000px;
+    width: 100%;
+    height: 1000px;
 }
 
 .listseparator {
-    border: 1px solid black; 
-    width:200px;
+    border: 1px solid black;
+    width: 200px;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #262626;
     background-color: #ff7f11;
     border-color: #ff7f11;
+    transition: .5s;
 }
 
 nav ul li a {
@@ -127,51 +132,58 @@ nav ul li a {
         color: #262626;
         background-color: #FF7F11;
         box-shadow: 2px 2px 5px #262626 !important;
-    }
-    ul li a:hover {
-        text-decoration: none;
-        font-size: 20px;
         transition: .5s;
     }
 
-    ul li a.active,
-    ul li a:hover {
-        color: #262626;
-        background-color: #FF7F11;
-        box-shadow: 2px 2px 5px #262626 !important;
-    }
+ul li a:hover {
+    text-decoration: none;
+    font-size: 20px;
+    transition: .5s;
+}
+
+ul li a.active,
+ul li a:hover {
+    color: #262626;
+    background-color: #FF7F11;
+    box-shadow: 2px 2px 5px #262626 !important;
+    transition: .5s;
+}
 
 
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
+    transition: .5s;
 }
+
 @media (min-width: 868px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+        transition: .5s;
+    }
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
@@ -179,31 +191,36 @@ body {
     margin-bottom: 60px;
     background-color: #ACBFA4;
 }
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
 }
 
 .jumbotron {
     background: rgb(172,191,164);
     background: linear-gradient(0deg, rgba(172,191,164,0.020361990950226283) 0%, rgba(226,232,206,1) 72%);
     box-shadow: 0px 2px 5px #262626;
+    transition: .5s;
 }
 
 .footer {
-    text-align:center;
+    text-align: center;
 }
 
 .logo {
     width: 100px;
+    margin-bottom:10px;
+    margin-left:20px;
 }
 
 .cartImage {
-    margin-left:10px;
+    margin-left: 10px;
     width: 50px;
+    transition: .5s;
 }
 
     .cartImage:active,
@@ -222,7 +239,7 @@ body {
     background-color: #FF7F11;
     box-shadow: 2px 2px 5px black;
     border-radius: 5px;
-    text-align: center; 
+    text-align: center;
     padding: 0px;
 }
 
@@ -230,7 +247,7 @@ body {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     background: rgb(172,191,164);
     background: linear-gradient(180deg, rgba(172,191,164,1) 0%, rgba(226,232,206,1) 72%);
-    margin-bottom:-10px;
+    margin-bottom: -10px;
 }
 
 .card {
@@ -238,6 +255,7 @@ body {
     float: none; /* Added */
     margin-bottom: 10px; /* Added */
 }
-.productimage{
+
+.productimage {
     width: 60px;
 }
