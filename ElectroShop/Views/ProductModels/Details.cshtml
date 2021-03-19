@@ -38,16 +38,18 @@
                 <input type="radio" id="star2" name="rate" value="2" /><label for="star2" title="text">2 stars</label>
                 <input type="radio" id="star1" name="rate" value="1" /><label for="star1" title="text">1 star</label>
             </div>
-            <div name="review" form-group form-control">
-                <input type="text" class="form-control" placeholder="tilte" name="title"/>
-                <textarea id="text" class="form-control" placeholder="review" rows="3" name="review"></textarea>
+            <div name="review">
+                <input type="text" style="margin:auto; margin-bottom:10px"; class="form-control shadow" placeholder="tilte" name="title"/>
+                <textarea id="text" style="margin:auto; margin-bottom:10px"; class="form-control shadow" placeholder="review" rows="3" name="review"></textarea>
             </div>
             <button id="buttonSubmit" type="submit" class="shadow btn btn-primary" name="rate">Review Submit</button>
         </form>
 
         <hr />
+        <div>
         @* The description list of all the reviews. *@
         <div id="reviews"></div>
+        </div>
     </div>
 </div>
 <div>
@@ -63,15 +65,19 @@
 
             // Append the title as well as the review to the description list.
             const addReviewItem = function(reviewData) {
+                // variable for star
                 var star = '';
                 var i; 
 
+                // Iterate throw the review.rate amount of rates
                 for (i = 0; i < reviewData.rate; i++){
+                    // adds one star to the stars.
                     star = '★ ' + star;
                 }
 
+                // jQeary Append bootstrap class card.
                 $("#reviews").append(`
-                <div class="card" style="400px; margin:auto;">
+                <div class="shadow card" style="margin:auto; margin-bottom:10px;">
                     <div class="card-body">
                         <h6 style="color:#FF7F11;">${star}</h6>
                         <h5 class="card-title">${reviewData.title}</h5>
