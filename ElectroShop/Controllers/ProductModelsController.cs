@@ -37,7 +37,9 @@ namespace ElectroShop.Controllers
         /// <returns>Returns a list of products</returns>
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Products.ToListAsync());
+            var indexModel = _context.Products.Include(p => p.ProductRatings).ToListAsync();
+
+            return View(await indexModel);
         }
 
         /// <summary>
