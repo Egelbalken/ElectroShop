@@ -3,7 +3,6 @@ for details on configuring this project to bundle and minify static web assets. 
 
 
 
-
 /* Modify brand and text color of the bootsrap class*/
 .navbar-light {
     background: rgb(172,191,164) !important;
@@ -16,7 +15,7 @@ for details on configuring this project to bundle and minify static web assets. 
 
 a.navbar-brand {
     white-space: normal;
-    word-break: break-all;
+   /* word-break: break-all;*/
     transition: .5s;
 }
 
@@ -109,6 +108,13 @@ a {
     transition: .5s;
 }
 
+.navbar-nav .nav-link {
+    text-align: center !important;
+    margin: auto;
+    transition: .5s;
+}
+
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #262626;
     background-color: #ff7f11;
@@ -116,20 +122,22 @@ a {
     transition: .5s;
 }
 
+
+
 nav ul li a {
     text-decoration: none;
-    border-radius: 15px;
+    border-radius: 16px;
     color: #3f48cc;
     padding: 5px 10px;
     text-transform: uppercase;
-    font-size: 20px;
+    font-size: 16px;
     margin: 0px, 0px, 0px, 0px;
     transition: .5s;
 }
 
     nav ul li a:hover {
         text-decoration: none;
-        font-size: 20px;
+        font-size: 16px;
         transition: .5s;
     }
 
@@ -143,7 +151,7 @@ nav ul li a {
 
 ul li a:hover {
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
     transition: .5s;
 }
 
@@ -166,7 +174,12 @@ html {
 
 @media (min-width: 868px) {
     html {
-        font-size: 16px;
+        font-size: 14px;
+        transition: .5s;
+    }
+
+    button {
+        font-size: 10px;
         transition: .5s;
     }
 }
@@ -219,21 +232,22 @@ body {
 
 .logo {
     width: 100px;
-    margin-bottom:10px;
-    margin-left:20px;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-left: 20px;
 }
 
 .cartImage {
-    margin-left: 10px;
-    width: 50px;
-    transition: .5s;
+    width: 30px;
+    text-align: center;
+    transition: 0.25s;
 }
 
     .cartImage:active,
     .cartImage:hover {
-        float: right;
         transition: 0.25s;
-        width: 60px;
+        background-color: #FF7F11;
+        border-radius: 5px;
     }
 
 #search {
