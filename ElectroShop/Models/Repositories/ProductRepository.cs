@@ -22,7 +22,7 @@ namespace ElectroShop.Models
             .Include(product => product.ProductRatings)
             .ToList();
 
-        public IEnumerable<ProductModel> OnSaleProduct => throw new NotImplementedException();
+        public IEnumerable<ProductModel> OnSaleProduct => AllProducts;
 
         /// <summary>
         /// Get the requested ProductModel.

@@ -13,3 +13,7 @@ $('.rate').each((i, rate) => {
     $(rate).find('#star' + startInput).prop("checked", true);
 });
 
+$(function () {
+    $(".item").first().addClass("active");
+    $("ol.carousel-indicators").find("li").eq(0).addClass("active");
+})
