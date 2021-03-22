@@ -13,6 +13,33 @@ for details on configuring this project to bundle and minify static web assets. 
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
 }
 
+/*  ------------------------------------------
+    Carousel slide buttons
+*/
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    height: 50px;
+    width: 50px;
+    outline: black;
+    background-size: 100%, 100%;
+    border-radius: 50%;
+    background-image: none;
+}
+
+    .carousel-control-next-icon:after {
+        content: '>';
+        font-size: 40px;
+        color: red;
+    }
+
+    .carousel-control-prev-icon:after {
+        content: '<';
+        font-size: 40px;
+        color: red;
+    }
+
+/* -------------------------------------*/
+
 a.navbar-brand {
     white-space: normal;
    /* word-break: break-all;*/
@@ -163,6 +190,51 @@ ul li a:hover {
     transition: .5s;
 }
 
+/* ------------------------------------  */
+/*          Side navbar Start           */
+.sidenav {
+
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 373px;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+    .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+    }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+.main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+        display: none;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+/*             Sidebar END               */
+/* ------------------------------------- */
 
 
 /* Sticky footer styles

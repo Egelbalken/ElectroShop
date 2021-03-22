@@ -7,48 +7,46 @@
 
 
 <!-- Vi behöver lägga till dynamiska parametrar för prdukterna sen via ModelBinding-->
-<div class="container">
-    <div id="carouselExampleIndicators" class="jumbotron carousel slide" style="background:white;" data-ride="carousel">
+<div id="carouselExampleIndicators" class="jumbotron carousel slide img-fluid" style="background:white; border-radius:5px;" data-ride="carousel">
+    @if (Model != null)
+    {
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <ol class="carousel-indicators">
+                @if (i < 1)
+                {
+                    <li data-target="#carousel-example-generic" data-slide-to='@i' class="active"></li>
+                }
+                else
+                {
+                    <li data-target="#carousel-example-generic" data-slide-to='@i'></li>
+                }
+            </ol>
+        }
+    }
+    <div class="carousel-inner">
         @if (Model != null)
         {
             @for (int i = 0; i < Model.Count; i++)
             {
-                <ol class="carousel-indicators">
-                    @if (i < 1)
-                    {
-                        <li data-target="#carousel-example-generic" data-slide-to='@i' class="active"></li>
-                    }
-                    else
-                    {
-                        <li data-target="#carousel-example-generic" data-slide-to='@i'></li>
-                    }
-                </ol>
-            }
-        }
-        <div class="carousel-inner">
-            @if (Model != null)
-            {
-                @for (int i = 0; i < Model.Count; i++)
+                @if (i < 1)
                 {
-                    @if (i < 1)
-                    {
-                        <div class="carousel-item active text-center img-fluid">
-                            <a asp-action="Details" asp-controller="ProductModels" asp-route-id="@Model[i].ProductId"><img src="@Model[i].ImageURL)" alt="Oheno!... No image. "></a>
-                            <p style="color:red; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:35px;">ONSALE 50% OFF!!</p>
-                            <p style="color:red; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:40px;">@Model[i].OnSalePrice</p>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="carousel-item text-center img-fluid">
-                            <a asp-action="Details" asp-controller="ProductModels" asp-route-id="@Model[i].ProductId"><img src="@Model[i].ImageURL)" alt="Oheno!... No image. "></a>
-                            <p style="color:red; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:35px;">ONSALE 50% OFF!!</p>
-                            <p style="color:red; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:40px;">@Model[i].OnSalePrice</p>
-                        </div>
-                    }
+                    <div class="carousel-item active text-center">
+                        <a asp-action="Details" asp-controller="ProductModels" asp-route-id="@Model[i].ProductId"><img class="img-fluid" src="@Model[i].ImageURL)" alt="Oheno!... No image. "></a>
+                        <p style="color:red; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:35px;">ONSALE 50% OFF!!</p>
+                        <p style="color:red; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:40px;">@Model[i].OnSalePrice</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="carousel-item text-center">
+                        <a asp-action="Details" asp-controller="ProductModels" asp-route-id="@Model[i].ProductId"><img class="img-fluid" src="@Model[i].ImageURL)" alt="Oheno!... No image. "></a>
+                        <p style="color:red; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:35px;">ONSALE 50% OFF!!</p>
+                        <p style="color:red; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:40px;">@Model[i].OnSalePrice</p>
+                    </div>
                 }
             }
-        </div>
+        }
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
