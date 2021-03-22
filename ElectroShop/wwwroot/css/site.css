@@ -337,9 +337,10 @@ body {
     }
 
 #search {
-    float:right;
+    float: right;
     padding: 10px;
     transition: .5s;
+    overflow: auto;
 }
 
 #covid {
