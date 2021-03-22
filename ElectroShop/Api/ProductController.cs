@@ -36,10 +36,21 @@ namespace ElectroShop.Api
         /// <param name="productId">The ID of the product</param>
         /// <returns>The average rating of the product.</returns>
         [HttpGet]
-        public double GetAverageRating(int productId)
+        public ActionResult<double> GetAverageRating(int productId)
         {
-            ProductModel product = _productRepository.GetProduct(productId);
-            return product.AverageProductRating;
+            try
+            {
+                ProductModel product = _productRepository.GetProduct(productId);
+
+                if (product == null)
+                    return BadRequest(productId);
+
+                return Ok(product.AverageProductRating);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
         /// <summary>
@@ -48,10 +59,26 @@ namespace ElectroShop.Api
         /// <param name="productId">The ID of the product</param>
         /// <returns>An IEnumerable of ProductRatingModel</returns>
         [HttpGet]
-        public IEnumerable<ProductRatingModel> GetRatings(int productId)
+        public ActionResult<IEnumerable<object>> GetRatings(int productId)
         {
-            // TODO: Remove customer personal details
-            return _productRepository.GetProductRatings(productId);
+            try
+            {
+                var ratings = _productRepository.GetProductRatings(productId);
+
+                if (ratings == null)
+                    return BadRequest(productId);
+
+                return Ok(ratings
+                    .Select(rating => new 
+                    { 
+                        CustomerId = rating.Customer.Id,
+                        Rate = rating.Rating,
+                    }));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
         /// <summary>
@@ -61,75 +88,66 @@ namespace ElectroShop.Api
         /// <returns>An IEnumerable of ProductReviewModel</returns>
         [HttpGet]
         // localhost:5000/api/Product/GetReviews/1
-        public IEnumerable<RateReviewViewModel> GetReviews(int productId)
+        public ActionResult<IEnumerable<RateReviewViewModel>> GetReviews(int productId)
         {
-            return _productRepository.GetProductReviews(productId)
-                .Select(review => new RateReviewViewModel
-                {
-                    Title = review.Title,
-                    Review = review.Review,
-                    Rate = review.Rating.Rating,
-                    ProductId = review.ProductId
-                });
-        }
+            try
+            {
+                var productReviews = _productRepository.GetProductReviews(productId);
 
-        /// <summary>
-        /// Get all ratings, reviews and the customer usernames for the requested product.
-        /// </summary>
-        /// <param name="productId">The product ID.</param>
-        /// <returns>An IEnumerable of all reviews, ratings and user details.</returns>
-        [HttpGet]
-        public IEnumerable<RateReviewViewModel> GetFullReviews(int productId)
-        {
-            // Retrieve all product reviews and product ratings from the repository.
-            var productReviews = _productRepository.GetProductReviews(productId);
-            var productRatings = _productRepository.GetProductRatings(productId);
+                if (productReviews == null)
+                    return BadRequest(productId);
 
-            // JOIN reviews and ratings on the customer ID,
-            // create an IEnumerable of RateReviewViewModel to be used as a JSON object for the view.
-            var completeReviews = productReviews.Join(productRatings,
-                review => review.Customer.Id,
-                rating => rating.Customer.Id,
-                (review, rating) => new RateReviewViewModel
-                {
-                    //UserName = review.Customer.UserName,
-                    Title = review.Title,
-                    Review = review.Review,
-                    Rate = rating.Rating,
-                });
-
-            return completeReviews;
+                return Ok(productReviews
+                    .Select(review => new RateReviewViewModel
+                    {
+                        Title = review.Title,
+                        Review = review.Review,
+                        Rate = review.Rating.Rating,
+                        ProductId = review.ProductId
+                    }));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostReview([FromBody] RateReviewViewModel data)
+        public async Task<ActionResult<RateReviewViewModel>> PostReview(RateReviewViewModel data)
         {
-            if (!User.IsInRole("Customer"))
-                return Unauthorized(data);
+            try
+            {
+                if (!User.IsInRole("Customer"))
+                    return Unauthorized(data);
 
-            if (!ModelState.IsValid)
-                return BadRequest(data);
+                if (!ModelState.IsValid)
+                    return BadRequest(data);
 
-            ApplicationUser customer = await _userManager.GetUserAsync(User);
+                ApplicationUser customer = await _userManager.GetUserAsync(User);
 
-            await _applicationDbContext.ProductReviews
-                .AddAsync(new ProductReviewModel
-                {
-                    Title = data.Title,
-                    Review = data.Review,
-                    ProductId = data.ProductId,
-                    Rating = new ProductRatingModel 
-                    { 
-                        Rating = data.Rate, 
-                        Customer = customer, 
-                        ProductId = data.ProductId 
-                    },
-                    Customer = customer,
-                });
+                await _applicationDbContext.ProductReviews
+                    .AddAsync(new ProductReviewModel
+                    {
+                        Title = data.Title,
+                        Review = data.Review,
+                        ProductId = data.ProductId,
+                        Rating = new ProductRatingModel 
+                        { 
+                            Rating = data.Rate, 
+                            Customer = customer, 
+                            ProductId = data.ProductId 
+                        },
+                        Customer = customer,
+                    });
 
-            await _applicationDbContext.SaveChangesAsync();
+                await _applicationDbContext.SaveChangesAsync();
 
-            return Ok(data);
+                return Ok(data);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
     }
 }
