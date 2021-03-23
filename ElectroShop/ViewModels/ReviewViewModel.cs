@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ElectroShop.ViewModels
 {
-    public class RateReviewViewModel
+    public class ReviewViewModel
     {
         [Required]
         public int ProductId { get; set; } 
