@@ -32,9 +32,9 @@
                             <input class="shadow btn btn-success" type="submit" id="quantityButton" name="quantity" value="Change Amount"/>
                         </form>
                     <td class="text-left">@line.product.Name</td>
-                    <td class="text-right">@line.product.Price.ToString("c",culture)</td>
+                    <td class="text-right">@line.product.CalculatedPriceOff.ToString("c",culture)</td>
                     <td class="text-right">
-                            @((line.Amount * line.product.Price).ToString("c",culture))
+                            @((line.Amount * line.product.CalculatedPriceOff).ToString("c",culture))
                     </td>
                     <td>
                         <a class="shadow btn btn-warning" asp-action="RemoveFromShoppingCart" asp-route-productId="@line.product.ProductId">Remove</a>

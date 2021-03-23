@@ -22,7 +22,10 @@ namespace ElectroShop.Models
             .Include(product => product.ProductRatings)
             .ToList();
 
-        public IEnumerable<ProductModel> OnSaleProduct => AllProducts;
+        /// <summary>
+        /// Return the on sale product.
+        /// </summary>
+        public IEnumerable<ProductModel> OnSaleProduct => AllProducts.Where(ps => ps.OnSaleProduct).ToList();
 
         /// <summary>
         /// Get the requested ProductModel.

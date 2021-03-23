@@ -150,11 +150,13 @@ namespace ElectroShop.Models
 
         /// <summary>
         /// Return the total shopping cart sum and items.
+        /// Tolist().sum() bug!! Check the answers in the link.
+        /// https://github.com/dotnet/efcore/issues/20277
         /// </summary>
         /// <returns>Total sum that is in the shopping cart</returns>
         public decimal GetShoppingCartTotal()
         {
-            var total = _applicationDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId).Select(c => c.product.Price * c.Amount).Sum();
+            var total = _applicationDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId).Select(c => c.product.CalculatedPriceOff * c.Amount).ToList().Sum();
             return total;
         }
 

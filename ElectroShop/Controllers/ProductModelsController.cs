@@ -26,9 +26,11 @@ namespace ElectroShop.Controllers
             _context = context;
         }
 
-        ///////////////////////////////////////////////////////////////////
-        ////////////////////////  Skaffolded /////////////////////////////
-        /////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////  Skaffolded  /////////////////////////////
+        //////////////////////////////////////////////////////////////////
+
 
         /// <summary>
         /// GET: ProductModels
@@ -147,7 +149,7 @@ namespace ElectroShop.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,Price,CategoryId,ImageURL")] ProductModel productModel)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,Price,CategoryId,ImageURL,OnSalePrice")] ProductModel productModel)
         {
             if (id != productModel.ProductId)
             {

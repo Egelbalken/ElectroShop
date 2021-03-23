@@ -32,8 +32,26 @@ namespace ElectroShop.Models
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
 
-        public bool OnSaleProduct { get; set; }
+        /// <summary>
+        /// If product price is changed and product is on sale return the new price.
+        /// </summary>
+        //[NotMapped]
+        public decimal CalculatedPriceOff
+        {
+            get
+            {if (OnSaleProduct == true) 
+                    return (decimal)OnSalePrice; 
+                else return Price; 
+            } }
 
+        /// <summary>
+        /// If OnSalePrice is changed, the product is on Sale.
+        /// </summary>
+        [Display(Name = "On Sale!")]
+        [NotMapped]
+        public bool OnSaleProduct { get => OnSalePrice != 0;}
+
+        [Display(Name = "Sale Price!")]
         public double OnSalePrice { get; set; }
 
         public CategoryModel Category { get; set; }

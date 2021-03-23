@@ -19,14 +19,14 @@
             <tr>
                 <td class="text-left">@line.Amount</td>
                 <td class="text-left">@line.product.Name</td>
-                <td class="text-right">@line.product.Price.ToString("c",culture)</td>
+                <td class="text-right">@line.product.CalculatedPriceOff.ToString("c",culture)</td>
             </tr>
         }
     </tbody>
     <tfoot>
         <tr>
             <td>Total price:</td>
-            <td class="text-right">@Model.Select(line => line.product.Price * line.Amount).Sum()SEK</td>
+            <td class="text-right">@Model.Select(line => line.product.CalculatedPriceOff * line.Amount).Sum()SEK</td>
         </tr>
     </tfoot>
 </table>
