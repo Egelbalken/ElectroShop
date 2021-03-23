@@ -21,12 +21,6 @@ namespace ElectroShop.Models
         public ApplicationUser Customer { get; set; }
         public List<OrderDetailModel> OrderDetails { get; set; } = new List<OrderDetailModel>();
 
-        // Delete since we're not using it anywhere
-        public decimal TotalCost => OrderDetails.Select(order => order.Product.Price * order.Quantity).Sum();
-
-        // Delete since we're not using it anywhere
-        public string Invoice { get; set; }
-
         public Receipt Receipt { get; set; }
 
     }

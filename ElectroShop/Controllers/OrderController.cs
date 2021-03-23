@@ -124,22 +124,7 @@ namespace ElectroShop.Controllers
         public IActionResult Invoice(int orderId)
         {
             var pdfCreator = new PdfCreator(_applicationDbContext);
-            string createdPdf =
-            pdfCreator.CreatePdf(orderId);
-
-
-            var order =
-            _applicationDbContext.Orders.Find(orderId);
-
-            order.Invoice = createdPdf;
-
-            _applicationDbContext.Orders.Update(order);
-            _applicationDbContext.SaveChanges();
-            byte[] bytePdf = createdPdf.Select(s => (byte)s).ToArray();
-            MemoryStream stream = new MemoryStream();
-            stream.Write(bytePdf);
-
-            ViewData["PDF"] = bytePdf;
+            ViewData["PDF"] = pdfCreator.CreatePdf(orderId);
 
             return View();
         }

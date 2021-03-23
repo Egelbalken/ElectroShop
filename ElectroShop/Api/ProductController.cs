@@ -189,7 +189,7 @@ namespace ElectroShop.Api
                 if (User.IsInRole("Admin"))
                 {
                     _applicationDbContext.ProductReviews.Remove(productReview);
-                    _applicationDbContext.SaveChanges();
+                    await _applicationDbContext.SaveChangesAsync();
                 }
                 else
                 {
@@ -198,7 +198,7 @@ namespace ElectroShop.Api
                         return Unauthorized();
 
                     _applicationDbContext.ProductReviews.Remove(productReview);
-                    _applicationDbContext.SaveChanges();
+                    await _applicationDbContext.SaveChangesAsync();
                 }
 
                 return NoContent();
