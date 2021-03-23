@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace ElectroShop.Api
 {
-    [Route("api/[controller]/{action}/{productId?}")]
+    [Route("api/[controller]/{action}")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -35,15 +36,15 @@ namespace ElectroShop.Api
         /// </summary>
         /// <param name="productId">The ID of the product</param>
         /// <returns>The average rating of the product.</returns>
-        [HttpGet]
+        [HttpGet("{productId:int}")]
         public ActionResult<double> GetAverageRating(int productId)
         {
             try
             {
-                ProductModel product = _productRepository.GetProduct(productId);
+                var product = _productRepository.GetProduct(productId);
 
                 if (product == null)
-                    return BadRequest(productId);
+                    return BadRequest();
 
                 return Ok(product.AverageProductRating);
             }
@@ -58,18 +59,17 @@ namespace ElectroShop.Api
         /// </summary>
         /// <param name="productId">The ID of the product</param>
         /// <returns>An IEnumerable of ProductRatingModel</returns>
-        [HttpGet]
+        [HttpGet("{productId:int}")]
         public ActionResult<IEnumerable<object>> GetRatings(int productId)
         {
             try
             {
-                var ratings = _productRepository.GetProductRatings(productId);
+                var productRatings = _productRepository.GetProductRatings(productId);
 
-                if (ratings == null)
-                    return BadRequest(productId);
+                if (productRatings == null)
+                    return BadRequest();
 
-                return Ok(ratings
-                    .Select(rating => new 
+                return Ok(productRatings.Select(rating => new 
                     { 
                         CustomerId = rating.Customer.Id,
                         Rate = rating.Rating,
@@ -86,19 +86,17 @@ namespace ElectroShop.Api
         /// </summary>
         /// <param name="productId">The ID of the product</param>
         /// <returns>An IEnumerable of ProductReviewModel</returns>
-        [HttpGet]
-        // localhost:5000/api/Product/GetReviews/1
-        public ActionResult<IEnumerable<RateReviewViewModel>> GetReviews(int productId)
+        [HttpGet("{productId:int}")]
+        public ActionResult<IEnumerable<ReviewViewModel>> GetReviews(int productId)
         {
             try
             {
                 var productReviews = _productRepository.GetProductReviews(productId);
 
                 if (productReviews == null)
-                    return BadRequest(productId);
+                    return BadRequest();
 
-                return Ok(productReviews
-                    .Select(review => new RateReviewViewModel
+                return Ok(productReviews.Select(review => new ReviewViewModel
                     {
                         Title = review.Title,
                         Review = review.Review,
@@ -112,37 +110,98 @@ namespace ElectroShop.Api
             }
         }
 
+        [HttpGet("{reviewId:int}", Name = "GetReview")]
+        public async Task<ActionResult<ReviewViewModel>> GetReview(int reviewId)
+        {
+            try
+            {
+                var productReview = await _applicationDbContext.ProductReviews
+                    .Include(review => review.Rating)
+                    .FirstOrDefaultAsync(review => review.ProductReviewId == reviewId);
+
+                if (productReview == null)
+                    return NotFound();
+
+                return Ok(new ReviewViewModel 
+                    { 
+                        Review = productReview.Review,
+                        Title = productReview.Title,
+                        ProductId = productReview.ProductId,
+                        Rate = productReview.Rating.Rating
+                    });
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
         [HttpPost]
-        public async Task<ActionResult<RateReviewViewModel>> PostReview(RateReviewViewModel data)
+        public async Task<ActionResult<ReviewViewModel>> PostReview(ReviewViewModel request)
         {
             try
             {
                 if (!User.IsInRole("Customer"))
-                    return Unauthorized(data);
+                    return Unauthorized();
 
                 if (!ModelState.IsValid)
-                    return BadRequest(data);
+                    return BadRequest();
 
-                ApplicationUser customer = await _userManager.GetUserAsync(User);
+                var signedInCustomer = await _userManager.GetUserAsync(User);
 
-                await _applicationDbContext.ProductReviews
+                var review = await _applicationDbContext.ProductReviews
                     .AddAsync(new ProductReviewModel
                     {
-                        Title = data.Title,
-                        Review = data.Review,
-                        ProductId = data.ProductId,
+                        Title = request.Title,
+                        Review = request.Review,
+                        ProductId = request.ProductId,
                         Rating = new ProductRatingModel 
                         { 
-                            Rating = data.Rate, 
-                            Customer = customer, 
-                            ProductId = data.ProductId 
+                            Rating = request.Rate, 
+                            Customer = signedInCustomer, 
+                            ProductId = request.ProductId 
                         },
-                        Customer = customer,
+                        Customer = signedInCustomer,
                     });
 
                 await _applicationDbContext.SaveChangesAsync();
 
-                return Ok(data);
+                return CreatedAtRoute("GetReview", new { reviewId = review.Entity.ProductReviewId }, request);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpDelete("{reviewId:int}")]
+        public async Task<ActionResult> DeleteReview(int reviewId)
+        {
+            try
+            {
+                var productReview = await _applicationDbContext.ProductReviews
+                    .Include(review => review.Customer)
+                    .FirstOrDefaultAsync(review => review.ProductReviewId == reviewId);
+
+                if (productReview == null)
+                    return NotFound();
+
+                if (User.IsInRole("Admin"))
+                {
+                    _applicationDbContext.ProductReviews.Remove(productReview);
+                    _applicationDbContext.SaveChanges();
+                }
+                else
+                {
+                    var signedInUser = await _userManager.GetUserAsync(User);
+                    if (signedInUser == null || signedInUser.Id != productReview.Customer.Id)
+                        return Unauthorized();
+
+                    _applicationDbContext.ProductReviews.Remove(productReview);
+                    _applicationDbContext.SaveChanges();
+                }
+
+                return NoContent();
             }
             catch (Exception)
             {
