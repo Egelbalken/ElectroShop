@@ -340,7 +340,9 @@ body {
     float: right;
     padding: 10px;
     transition: .5s;
-    overflow: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #covid {
