@@ -48,22 +48,15 @@ namespace ElectroShop.Models
         /// <exception cref="InvalidOperationException"></exception>
         public IEnumerable<ProductReviewModel> GetProductReviews(int productId)
         {
-            // Find the product with the given product ID.
-            // Include all reviews of the product and their ratings,
-            // as well as the customer reviewing the product.
-            ProductModel product = applicationDbContext.Products
-                .Include(product => product.ProductReviews)
-                    .ThenInclude(review => review.Rating)
-                .Include(product => product.ProductReviews)
-                    .ThenInclude(review => review.Customer)
-                .FirstOrDefault(product => product.ProductId == productId);
+            // Find all the reviews with the given product ID,
+            // and include all ratings of the product as well as the customer reviewing it.
+            var reviews = applicationDbContext.ProductReviews
+                .Include(review => review.Customer)
+                .Include(review => review.Rating)
+                .Where(review => review.ProductId == productId)
+                .ToList();
 
-            // If the given product was not found, throw an exception.
-            if (product == null)
-                throw new InvalidOperationException($"The product with the given productId of '{productId}' could not be found.");
-
-            // return all the reviews of the product.
-            return product.ProductReviews;
+            return reviews;
         }
 
         /// <summary>
@@ -73,20 +66,15 @@ namespace ElectroShop.Models
         /// <returns>An IEnumerable of ProductRatingModel</returns>
         /// <exception cref="InvalidOperationException"></exception>
         public IEnumerable<ProductRatingModel> GetProductRatings(int productId)
-        { 
-            // Find the product with the given product ID.
-            // Include all ratings of the product, and the customer rating the product.
-            ProductModel product = applicationDbContext.Products
-                .Include(product => product.ProductRatings)
-                    .ThenInclude(rating => rating.Customer)
-                .FirstOrDefault(product => product.ProductId == productId);
+        {
+            // Find all the ratings with the given product ID,
+            // and include the customer rating the product.
+            var ratings = applicationDbContext.ProductRatings
+                .Include(rating => rating.Customer)
+                .Where(rating => rating.ProductId == productId)
+                .ToList();
 
-            // If the given product was not found, throw an exception.
-            if (product == null)
-                throw new InvalidOperationException($"The product with the given productId of '{productId}' could not be found.");
-
-            // return all the ratings of the product.
-            return product.ProductRatings;
+            return ratings;
         }
     }
 }
