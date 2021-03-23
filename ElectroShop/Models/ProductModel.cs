@@ -35,14 +35,18 @@ namespace ElectroShop.Models
         /// <summary>
         /// If product price is changed and product is on sale return the new price.
         /// </summary>
-        //[NotMapped]
+        [NotMapped]
+        [Display(Name = "Price")]
         public decimal CalculatedPriceOff
         {
             get
-            {if (OnSaleProduct == true) 
+            {
+                if (OnSaleProduct == true) 
                     return (decimal)OnSalePrice; 
-                else return Price; 
-            } }
+                else 
+                    return Price; 
+            } 
+        }
 
         /// <summary>
         /// If OnSalePrice is changed, the product is on Sale.
