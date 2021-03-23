@@ -57,7 +57,7 @@ namespace ElectroShop.Pdf
             {
                 invoice.Add(new Paragraph("      Product number: " + detail.Product.ProductId));
                 invoice.Add(new Paragraph("      Product Name: " + detail.Product.Name));
-                invoice.Add(new Paragraph("      Price: " + detail.Product.Price.ToString()));
+                invoice.Add(new Paragraph("      Price: " + detail.Product.CalculatedPriceOff.ToString()));
             }
 
             invoice.Add(new Paragraph("______________________________________________________________________________"));

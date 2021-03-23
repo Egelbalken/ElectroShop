@@ -60,10 +60,9 @@
         <div class="dropdown text-nowrap">
             <button onclick="myFunction()" class="shadow dropbtn">Category Dropdown</button>
             <div id="myDropdown" class="shadow dropdown-content">
-                <a href="#Curcuit">Curcuit Boards</a>
-                <a href="#Battery">Battery</a>
-                <a href="#Diods">Diods</a>
-                <a href="#contact">Diods</a>
+                <a asp-action="Category" asp-controller="Browse" asp-route-id="3">Curcuit Boards</a>
+                <a asp-action="Category" asp-controller="Browse" asp-route-id="1">Battery</a>
+                <a asp-action="Category" asp-controller="Browse" asp-route-id="2">Diods</a>
             </div>
         </div>
         <div id="search">
