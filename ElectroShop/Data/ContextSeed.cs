@@ -4,11 +4,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json;
+using System.IO;
+using Microsoft.EntityFrameworkCore;
 
 namespace ElectroShop.Data
 {
     public static class ContextSeed
     {
+        private static Random random = new Random(42);
+
         public static async Task SeedRolesAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             await roleManager.CreateAsync(new IdentityRole(Enums.Roles.Admin.ToString()));
@@ -61,6 +66,53 @@ namespace ElectroShop.Data
             }
         }
 
+        public static async Task SeedCategoriesAsync(ApplicationDbContext context)
+        {
+            if (context.Categories.Count() != 0)
+                return;
+
+            using (var reader = new StreamReader("Data/Seed/categories.json"))
+            {
+                var categories = await JsonSerializer.DeserializeAsync<List<CategoryModel>>(reader.BaseStream);
+                await context.Categories.AddRangeAsync(categories);
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public static async Task SeedProductsAsync(ApplicationDbContext context)
+        {
+            if (context.Products.Count() != 0)
+                return;
+
+            var allSubcategories = await context.Categories
+                .Include(category => category.ParentCategory)
+                .Where(category => category.ParentCategory != null)
+                .ToListAsync();
+
+            foreach (var category in allSubcategories)
+            {
+                int productsPerCategory = 10;
+                for (int i = 0; i < productsPerCategory; i++)
+                {
+                    string garbageValue = new string(Enumerable
+                        .Range(1, random.Next(2, 10))
+                        .Select(_ => (char)random.Next('A', 'Z' + 1))
+                        .ToArray());
+
+                    var product = new ProductModel
+                    {
+                        CategoryId = category.CategoryId,
+                        Name = $"{category.Name} {garbageValue}",
+                        Description = "",
+                        Price = random.Next(5, 100),
+                        ImageURL = category.ImageURL
+                    };
+
+                    await context.Products.AddAsync(product);
+                    await context.SaveChangesAsync();
+                }
+            }
+        }
 
         public static async Task SeedCategoriesAndProductsAsync(ApplicationDbContext context)
         {
@@ -161,7 +213,7 @@ namespace ElectroShop.Data
                         ProductId = product.ProductId,
                         Rating = new ProductRatingModel 
                         { 
-                            Rating = 5, 
+                            Rating = random.Next(1, 6), 
                             Customer = customer, 
                             Product = product 
                         }
@@ -176,7 +228,6 @@ namespace ElectroShop.Data
         {
             if (context.ProductRatings.Count() == 0)
             {
-                var random = new Random();
                 var customer = await userManager.FindByEmailAsync("CustomerBardia@gmail.com");
                 var productRatings = context.Products
                     .Select(product => new ProductRatingModel

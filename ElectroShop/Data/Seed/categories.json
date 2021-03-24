@@ -1,0 +1,68 @@
+[
+  {
+    "Name": "Batterier",
+    "Description": "Alla typer av batterier.",
+    "ImageURL": "https://www.electrokit.com/uploads/productimage/41016/41016287.jpg",
+    "SubCategories": [
+      {
+        "Name": "Alkaliska",
+        "Description": "Icke-uppladdningsbara alkaliska batterier",
+        "ImageURL": "https://www.electrokit.com/uploads/productimage/41016/41016287.jpg"
+      },
+      {
+        "Name": "Litium",
+        "Description": "Icke-uppladdningsbara litiumbatterier och knappcellsbatterier.",
+        "ImageURL": "https://www.electrokit.com/uploads/productimage/41003/41003322.jpg"
+      },
+      {
+        "Name": "Zink-Kol",
+        "Description": "Alla typer av Zink-Kol batterier.",
+        "ImageURL": "https://www.electrokit.com/uploads/productimage/41003/41003570-600x450.jpg"
+      }
+    ]
+  },
+  {
+    "Name": "Dioder",
+    "Description": "Alla typer av dioder.",
+    "ImageURL": "https://www.electrokit.com/uploads/productimage/40310/DO-41-600x450.jpg",
+    "SubCategories": [
+      {
+        "Name": "Kisel",
+        "Description": "Alla typer av kisel dioder",
+        "ImageURL": "https://www.electrokit.com/uploads/productimage/41016/DO-35-600x450.jpg"
+      },
+      {
+        "Name": "Schottky",
+        "Description": "Alla typer av schottky dioder",
+        "ImageURL": "https://www.electrokit.com/uploads/productimage/40310/DO-41-600x450.jpg"
+      },
+      {
+        "Name": "Zener",
+        "Description": "Alla typer av zener dioder",
+        "ImageURL": "https://www.electrokit.com/uploads/productimage/41016/DO-35-600x450.jpg"
+      }
+    ]
+  },
+  {
+    "Name": "Embedded",
+    "Description": "Alla inbyggda system och enkortsdatorer",
+    "ImageURL": "https://www.electrokit.com/uploads/productimage/41013/41013451.jpg",
+    "SubCategories": [
+      {
+        "Name": "Beaglebone",
+        "Description": "Alla Beaglebone produkter",
+        "ImageURL": "https://www.electrokit.com/uploads/productimage/41018/41018053-1-600x450.jpg"
+      },
+      {
+        "Name": "Raspberry Pi",
+        "Description": "All Raspberry Pi produkter",
+        "ImageURL": "https://www.electrokit.com/uploads/productimage/41012/41012962.jpg"
+      },
+      {
+        "Name": "Teensy",
+        "Description": "Alla Teensy produkter",
+        "ImageURL": "https://www.electrokit.com/uploads/productimage/41017/41017652-1-600x450.jpg"
+      }
+    ]
+  }
+]

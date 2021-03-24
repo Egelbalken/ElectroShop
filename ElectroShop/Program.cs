@@ -30,9 +30,9 @@ namespace ElectroShop
                     await ContextSeed.SeedRolesAsync(userManager, roleManager);
                     await ContextSeed.SeedAdminAsync(userManager, roleManager);
                     await ContextSeed.SeedCustomerAsync(userManager, roleManager);
-                    await ContextSeed.SeedCategoriesAndProductsAsync(context);
+                    await ContextSeed.SeedCategoriesAsync(context);
+                    await ContextSeed.SeedProductsAsync(context);
                     await ContextSeed.SeedProductReviewsAsync(context, userManager);
-                    await ContextSeed.SeedProductRatingsAsync(context, userManager);
                 }
                 catch (Exception ex)
                 {
