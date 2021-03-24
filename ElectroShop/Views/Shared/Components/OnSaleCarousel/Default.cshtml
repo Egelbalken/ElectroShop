@@ -33,7 +33,9 @@
                 {
                     <div class="carousel-item active text-center">
                         <a asp-action="Details" asp-controller="ProductModels" asp-route-id="@Model[i].ProductId"><img class="img-fluid" src="@Model[i].ImageURL)" alt="No image. "></a>
-                        <p style="color:red; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:35px;">ONSALE 50% OFF!!</p>
+                        <p style="color:red; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:35px;">
+                            ONSALE @Model[i].OnSalePercentage% OFF!!
+                        </p>
                         <p style="color:red; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:40px;">@Model[i].OnSalePrice SEK</p>
                     </div>
                 }
@@ -41,7 +43,9 @@
                 {
                     <div class="carousel-item text-center">
                         <a asp-action="Details" asp-controller="ProductModels" asp-route-id="@Model[i].ProductId"><img class="img-fluid" src="@Model[i].ImageURL)" alt="No image. "></a>
-                        <p style="color:red; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:35px;">ONSALE 50% OFF!!</p>
+                        <p style="color:red; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:35px;">
+                            ONSALE @Model[i].OnSalePercentage% OFF!!
+                        </p>
                         <p style="color:red; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:40px;">@Model[i].OnSalePrice SEK</p>
                     </div>
                 }

@@ -55,6 +55,23 @@ namespace ElectroShop.Models
         [NotMapped]
         public bool OnSaleProduct { get => OnSalePrice != 0;}
 
+        [NotMapped]
+        // Calculates the percentage off the product
+        public decimal OnSalePercentage
+        {
+            get 
+            { 
+                if (OnSaleProduct == false)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return Math.Truncate((1 - ((decimal)OnSalePrice / Price)) * 100);
+                }
+            }
+        }
+
         [Display(Name = "Sale Price!")]
         public double OnSalePrice { get; set; }
 
