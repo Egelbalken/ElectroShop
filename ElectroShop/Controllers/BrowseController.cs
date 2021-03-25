@@ -62,7 +62,7 @@ namespace ElectroShop.Controllers
             if (!String.IsNullOrEmpty(searchItemName))
             {
 
-                products = products.Where(info => info.Name.Contains(searchItemName));
+                products = products.Where(info => info.Name.Contains(searchItemName, StringComparison.OrdinalIgnoreCase));
             }
 
             return View(products);
